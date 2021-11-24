@@ -1,0 +1,90 @@
+img{
+    width:125px;
+    height:125px;
+    opacity: 0%;
+}
+
+h1{/*-------------------------------------------text Pexeso  */
+    margin-top: 20px;
+    text-align:center;
+    font-size: 600%;
+    color:#4d141d;
+}
+
+.column_content{/*-------------------------------------------div of all images  */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.row{/*-------------------------------------------row of images  */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex:50%;
+    margin-top: 1.5%;
+}
+
+.mask{/*-------------------------------------------picture of joker  */
+   background-image: url("pictures/joker.jpg");
+    background-position: center;
+}
+
+.row_first{/*-------------------------------------------first flex row */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.row_first_part_same{/*-------------------------------------------same properties od parts in first flex_row_first  */
+    padding:20px;
+    font-size: 300%;
+    float:left;
+    font-weight: bold;
+    color:white;
+}
+
+.row_first_part_same:hover{
+    color:#cc0606;
+}
+
+#seconds{/*-------------------------------------------div of text - seconds increment  */
+    color:#99103a;
+    font-weight: bold;
+}
+
+#start{/*-------------------------------------------button start of game  */
+    background-color: #99103a;
+    border-radius: 50%;
+}
+
+.flex_row_reverse{/*-------------------------------------------class for shuffle picture */
+    flex-direction:row-reverse;
+}
+
+#harder{/*-------------------------------------------button harder */
+    background-color: #4d141d;
+    border-radius: 50%;
+}
+#hardest{/*-------------------------------------------button hardest */
+    background-color: black;
+    border-radius: 50%;
+}
+
+/*------------------------------------------------------------------------------------------classes added by js */
+.div_center{/*-------------------------------------------centering h1 in the end */
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.h1End{/*-------------------------------------------text of gratulation  */
+    font-size:750%;
+    transition: font-size 0.52s;
+}
+
+.selected_img{}/*-------------------------------------------for abstract usage  */
