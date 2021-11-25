@@ -39,10 +39,9 @@ require "functions.php";
 
 
     <div class="column_content">
-        <?php
-        
-            print_r(echo_img());
-        ?>
+        <div class="row">
+            <?php view_el(echo_img()); ?>  
+        </div> 
     </div>
 
     </body>

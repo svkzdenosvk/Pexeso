@@ -17,12 +17,33 @@ function remove_ext():array{
     ,$images);
 }
 
-// write img name without extensions
+// write img name without extensions and shuffle
 function echo_img():array{
-    return remove_ext();
+    $images=remove_ext();
+    $images_all=array_merge($images, $images);
+    return shuffle($images_all)? $images_all : $images_all;
 }
 
-// print_r($images);
+
+function view_el(array $arr){
+
+    foreach ($arr as $value) {
+       
+    //    echo "<img  src='pictures/".$value.jpg' alt='Smiley face' >";
+    echo <<<END
+         <div class='mask' onclick="completeFn(this)">
+         <img  src='pictures/pexeso/{$value}.jpg' alt='Smiley face' >  
+         </div>    
+         END;
+      }
+}
+
+
+// echo <<<END
+// <img  src='pictures/$value.jpg' alt='Smiley face'>
+// END;
+
+
 
 // <?php
 //             for($i = 0; $i < 10; $i += 2):
