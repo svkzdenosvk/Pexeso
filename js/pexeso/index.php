@@ -15,7 +15,6 @@ require "functions.php";
   gtag('config', 'G-8WH83JV9LP');
 </script>
         <meta charset="UTF-8">
-        <script type="text/javascript" src="dodatky.js"></script>
 
         <script type="text/javascript" src="pexeso.js"></script>
 
