@@ -2,7 +2,6 @@
     /*
     this is game called Pexeso
 
-    problems: when U click too quickly .. sometimes freez image
      */
     /*----------------------------------------------------------------------------------------------------------------------------------variables ---start*/
     var stticSource =""; /*----------------------variable to save and then check source of image to compare and remove if same*/
@@ -81,9 +80,12 @@
                     stticSource=imgElm.getAttribute("src");
                 }else{/*------------------------------------------------------------------------------compare sources attribute of showed and clicked */
                     if(stticSource===imgElm.getAttribute("src")){/*----------------------if the same --> remove images */
+                        document.body.style.pointerEvents = "none";
                         setTimeout(function(){
                             document.getElementsByClassName("selected_img")[1].remove();
                             document.getElementsByClassName("selected_img")[0].remove();
+                            document.body.style.pointerEvents = "auto";
+
                             stticSource="";
 
                             checkEnd();/*----------------------------------------------------------------after remove check if all images is removed */
@@ -93,6 +95,8 @@
                         }, 300);
 
                     }else{/*------------------------------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
+                        document.body.style.pointerEvents = "none";
+
                         setTimeout(function(){
                             document.getElementsByClassName("selected_img")[1].classList.add('mask');/*------------------------------hide image below joker´s image*/
                             document.getElementsByClassName("selected_img")[1].firstElementChild.style.opacity="0";/*----------------hide image*/
@@ -101,6 +105,8 @@
 
                             document.getElementsByClassName("selected_img")[1].classList.remove('selected_img');/*--------------------remove specific class for identification*/
                             document.getElementsByClassName("selected_img")[0].classList.remove('selected_img');
+
+                            document.body.style.pointerEvents = "auto";
 
                             stticSource="";/*--------------------------------------------------------------clear comparable variable */
 

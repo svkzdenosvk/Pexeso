@@ -87,4 +87,5 @@ h1{/*-------------------------------------------text Pexeso  */
     transition: font-size 0.52s;
 }
 
-.selected_img{}/*-------------------------------------------for abstract usage  */
+.selected_img{
+}/*-------------------------------------------for abstract usage  */
