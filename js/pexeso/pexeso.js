@@ -197,10 +197,10 @@
     function checkEnd(){/*----------------------check if is end each picture removed */
         setTimeout(function(){
 
-            if((document.getElementsByClassName("row")[0].firstElementChild +
-                document.getElementsByClassName("row")[1].firstElementChild +
-                document.getElementsByClassName("row")[2].firstElementChild +
-                document.getElementsByClassName("row")[3].firstElementChild)===0){/*----------------------if all images on page are removed */
+            if((document.getElementsByClassName("row")[0].firstElementChild) ===0){
+                //document.getElementsByClassName("row")[1].firstElementChild +
+                //document.getElementsByClassName("row")[2].firstElementChild +
+                //document.getElementsByClassName("row")[3].firstElementChild)===0){/*----------------------if all images on page are removed */
 
                 stopTimer();/*----------------------------------------------------------------------------stop increment seconds */
                 var bodyTag=document.getElementsByTagName("BODY")[0];
