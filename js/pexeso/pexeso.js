@@ -29,33 +29,31 @@
     /*----------------------------------------------------------------------------------------------------------------------------------functions ---start*/
     /*----------------------------------------------------------------------------------------------------------------_partial-----functions ---start*/
 
-    function _setLevelChanges(colorText){
+    function _setLevelChanges(colorText,colorBG){
+        // set H1
         let headingText = document.getElementsByTagName("H1")[0];
         headingText.style.color=colorText;
         headingText.textContent="Pexeso";
 
+        // set background of page
+        document.getElementsByTagName("BODY")[0].style.backgroundColor=colorBG;
         
+        // set disappear settings buttons and show timer and starter of game
         document.getElementById("up").style.display="none";
-        document.getElementById("time").style.display="flex";
+        document.getElementById("timeAndStart").style.display="flex";
+        document.getElementById("seconds").style.color=colorText;
+
     }
 
     function setHarder(){/*---------------------function for set the harder version of game*/
         harder=true;
-        document.getElementById("seconds").style.color="white";
-        document.getElementsByTagName("BODY")[0].style.backgroundColor="#4d141d";
-        _setLevelChanges("white");
-
+        _setLevelChanges("white","#4d141d");
     }
 
     function setHardest(){/*---------------------function for set the hardest version of game*/
         harder=true;
-        hardest=true;
-
-        document.getElementById("seconds").style.color="white";
-        document.getElementsByTagName("BODY")[0].style.backgroundColor="black";
-     
-        _setLevelChanges("white");
-
+        hardest=true;     
+        _setLevelChanges("white","black");
     }
 
     function setNormal(){

@@ -26,7 +26,7 @@ require "functions.php";
     <body>
     <div>
         <div class="row_first2">
-            <div id="time">
+            <div id="timeAndStart">
                 <div class="row_first_part_same" id="seconds" >0 s</div>
                 <div class="row_first_part_same" id="start" onclick="timer()">START</div>
             </div>
