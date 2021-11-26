@@ -49,6 +49,21 @@
         document.getElementById("hardest").style.display="none";
     }
 
+    function setNormal(){}
+
+    function setLevel(level){
+
+        switch(level) {
+            case harder:
+                setHarder();
+               break;
+            case harder:
+                setHardest();
+              break;
+              default:
+                setNormal();
+    }
+
     function incrementSeconds(){/*-----------------change seconds number by increment */
         seconds += 1;
         document.getElementById("seconds").innerHTML  = seconds + " s";
