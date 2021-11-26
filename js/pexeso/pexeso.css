@@ -11,8 +11,14 @@ h1{/*-------------------------------------------text Pexeso  */
     color:#4d141d;
 }
 
+#up__left{
+    display:none;
+}
+
 .column_content{/*-------------------------------------------div of all images  */
-    display: flex;
+/*    display: flex;*/
+    display:none;
+
     flex-direction: column;
     justify-content: space-evenly;
 }
@@ -38,6 +44,24 @@ h1{/*-------------------------------------------text Pexeso  */
     flex-wrap: wrap;
 }
 
+#normal,#harder,#hardest{
+    border-radius: 50%;
+}
+
+#normal{/*-------------------------------------------button level-normal */
+    color:black;
+    border:5px solid black;;
+}
+
+#harder{/*-------------------------------------------button level-harder */
+    background-color: #4d141d;
+   
+}
+#hardest{/*-------------------------------------------button level-hardest */
+    background-color: black;
+   
+}
+
 .row_first_part_same{/*-------------------------------------------same properties od parts in first flex_row_first  */
     padding:20px;
     font-size: 300%;
@@ -46,7 +70,7 @@ h1{/*-------------------------------------------text Pexeso  */
     color:white;
 }
 
-.row_first_part_same:hover{
+.row_first_part_same:hover, #normal:hover{
     color:#cc0606;
 }
 
@@ -64,14 +88,7 @@ h1{/*-------------------------------------------text Pexeso  */
     flex-direction:row-reverse;
 }
 
-#harder{/*-------------------------------------------button harder */
-    background-color: #4d141d;
-    border-radius: 50%;
-}
-#hardest{/*-------------------------------------------button hardest */
-    background-color: black;
-    border-radius: 50%;
-}
+
 
 /*------------------------------------------------------------------------------------------classes added by js */
 .div_center{/*-------------------------------------------centering h1 in the end */

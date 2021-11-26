@@ -17,6 +17,7 @@ require "functions.php";
         <meta charset="UTF-8">
 
         <script type="text/javascript" src="pexeso.js"></script>
+        <!-- <script type="module" src="pexeso.js"></script> -->
 
         <link rel="stylesheet" href="pexeso.css" >
 
@@ -29,11 +30,13 @@ require "functions.php";
                 <div class="row_first_part_same" id="seconds" >0 s</div>
                 <div class="row_first_part_same" id="start" onclick="timer();">START</div>
             </div>
-            <div class="row_first_part_same" id="harder" onclick="setHarder()">HARDER</div>
-            <div class="row_first_part_same" id="hardest" onclick="setHardest()">HARDEST</div>
+
+            <div class="row_first_part_same" id="normal" onclick="setLevel("normal")">NORMAL</div>
+            <div class="row_first_part_same" id="harder" onclick="setLevel("harder")">HARDER</div>
+            <div class="row_first_part_same" id="hardest" onclick="setLevel("hardest")">HARDEST</div>
         </div>
 
-        <h1>Pexeso</h1>
+        <h1>Vstúpili ste do hry Pexeso, najskôr nastavte obtiažnosť</h1>
     </div>
 
 

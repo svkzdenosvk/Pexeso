@@ -1,19 +1,28 @@
-    
     /*
     this is game called Pexeso
 
      */
     /*----------------------------------------------------------------------------------------------------------------------------------variables ---start*/
-    var stticSource =""; /*----------------------variable to save and then check source of image to compare and remove if same*/
-    var harder;/*----------------------variable to trigger the harder version of game*/
-    var intervalSecond;/*----------------------variable to save function of interval for seconds interval*/
-    var intervalShuffle;/*----------------------variable to save function of interval for shuffle interval*/
-    var seconds = 0;/*----------------------variable for seconds increment*/
-    let oneOrZero=0;/*----------------------variable for random shuffling */
-    let oneOrZero2=0;/*----------------------variable for random shuffling */
-    let oneOrZero3=0;/*--------------------------randomly change 1 or 0*/
+    var stticSource =""; /*------------variable to save and then check source of image to compare and remove if same*/
+    //var harder;/*----------------------variable to trigger the harder version of game*/
+    var intervalSecond;/*--------------variable to save function of interval for seconds interval*/
+    var intervalShuffle;/*-------------variable to save function of interval for shuffle interval*/
+    var seconds = 0;/*-----------------variable for seconds increment*/
+    let oneOrZero=0;/*-----------------variable for random shuffling */
+    let oneOrZero2=0;/*----------------variable for random shuffling */
+    let oneOrZero3=0;/*----------------randomly change 1 or 0*/
 
-    var hardest;/*----------------------variable to trigger the hardest version of game*/
+   // var hardest;/*----------------------variable to trigger the hardest version of game*/
+
+    const setLevel={
+        isSet:false,
+        level:{
+            isNormal:false,
+            isHarder:false,
+            isHardest:false
+        }
+    }
+
     /*----------------------------------------------------------------------------------------------------------------------------------variables ---end*/
 
     /*----------------------------------------------------------------------------------------------------------------------------------functions ---start*/
@@ -40,7 +49,7 @@
         document.getElementById("hardest").style.display="none";
     }
 
-    function incrementSeconds(){/*---------------------change seconds number by increment */
+    function incrementSeconds(){/*-----------------change seconds number by increment */
         seconds += 1;
         document.getElementById("seconds").innerHTML  = seconds + " s";
     }
