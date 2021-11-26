@@ -2,9 +2,10 @@
     this is game called Pexeso
 
      */
+
     /*----------------------------------------------------------------------------------------------------------------------------------variables ---start*/
     var stticSource =""; /*------------variable to save and then check source of image to compare and remove if same*/
-    //var harder;/*----------------------variable to trigger the harder version of game*/
+    var harder;/*----------------------variable to trigger the harder version of game*/
     var intervalSecond;/*--------------variable to save function of interval for seconds interval*/
     var intervalShuffle;/*-------------variable to save function of interval for shuffle interval*/
     var seconds = 0;/*-----------------variable for seconds increment*/
@@ -14,7 +15,7 @@
 
    // var hardest;/*----------------------variable to trigger the hardest version of game*/
 
-    const setLevel={
+    const setLevelObj={
         isSet:false,
         level:{
             isNormal:false,
@@ -27,7 +28,7 @@
 
     /*----------------------------------------------------------------------------------------------------------------------------------functions ---start*/
     /*----------------------------------------------------------------------------------------------------------------_partial-----functions ---start*/
-
+//these 3 functions import by module !!!
     function setHarder(){/*---------------------function for set the harder version of game*/
         harder=true;
         document.getElementById("seconds").style.color="white";
@@ -52,17 +53,17 @@
     function setNormal(){}
 
     function setLevel(level){
-
         switch(level) {
-            case harder:
+            case "harder":
                 setHarder();
                break;
-            case harder:
+            case "hardest":
                 setHardest();
               break;
               default:
                 setNormal();
-    }
+        }
+    }   
 
     function incrementSeconds(){/*-----------------change seconds number by increment */
         seconds += 1;

@@ -25,15 +25,17 @@ require "functions.php";
     </head>
     <body>
     <div>
-        <div class="row_first">
+        <div class="row_first2">
             <div id="up__left">
                 <div class="row_first_part_same" id="seconds" >0 s</div>
-                <div class="row_first_part_same" id="start" onclick="timer();">START</div>
+                <div class="row_first_part_same" id="start" onclick="timer()">START</div>
+            </div>
+            <div id="up">
+                <div class="row_first_part_same" id="normal" onclick="setLevel('normal')">NORMAL</div>
+                <div class="row_first_part_same" id="harder" onclick="setLevel('harder')">HARDER</div>
+                <div class="row_first_part_same" id="hardest" onclick="setLevel('hardest')">HARDEST</div>
             </div>
 
-            <div class="row_first_part_same" id="normal" onclick="setLevel("normal")">NORMAL</div>
-            <div class="row_first_part_same" id="harder" onclick="setLevel("harder")">HARDER</div>
-            <div class="row_first_part_same" id="hardest" onclick="setLevel("hardest")">HARDEST</div>
         </div>
 
         <h1>Vstúpili ste do hry Pexeso, najskôr nastavte obtiažnosť</h1>

@@ -15,6 +15,8 @@ h1{/*-------------------------------------------text Pexeso  */
     display:none;
 }
 
+
+
 .column_content{/*-------------------------------------------div of all images  */
 /*    display: flex;*/
     display:none;
@@ -37,7 +39,7 @@ h1{/*-------------------------------------------text Pexeso  */
     background-position: center;
 }
 
-.row_first{/*-------------------------------------------first flex row */
+.row_first, #up{/*-------------------------------------------first flex row */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
