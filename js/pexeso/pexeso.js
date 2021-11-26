@@ -28,14 +28,22 @@
 
     /*----------------------------------------------------------------------------------------------------------------------------------functions ---start*/
     /*----------------------------------------------------------------------------------------------------------------_partial-----functions ---start*/
-//these 3 functions import by module !!!
+
+    function _setLevelChanges(colorText){
+        let headingText = document.getElementsByTagName("H1")[0];
+        headingText.style.color=colorText;
+        headingText.textContent="Pexeso";
+
+        
+        document.getElementById("up").style.display="none";
+        document.getElementById("time").style.display="flex";
+    }
+
     function setHarder(){/*---------------------function for set the harder version of game*/
         harder=true;
         document.getElementById("seconds").style.color="white";
         document.getElementsByTagName("BODY")[0].style.backgroundColor="#4d141d";
-        document.getElementById("harder").style.display="none";
-        document.getElementsByTagName("H1")[0].style.color="white";
-        document.getElementById("hardest").style.display="none";
+        _setLevelChanges("white");
 
     }
 
@@ -45,12 +53,14 @@
 
         document.getElementById("seconds").style.color="white";
         document.getElementsByTagName("BODY")[0].style.backgroundColor="black";
-        document.getElementById("harder").style.display="none";
-        document.getElementsByTagName("H1")[0].style.color="white";
-        document.getElementById("hardest").style.display="none";
+     
+        _setLevelChanges("white");
+
     }
 
-    function setNormal(){}
+    function setNormal(){
+      _setLevelChanges("black");
+    }
 
     function setLevel(level){
         switch(level) {

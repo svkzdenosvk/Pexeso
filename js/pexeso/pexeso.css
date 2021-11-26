@@ -7,11 +7,11 @@ img{
 h1{/*-------------------------------------------text Pexeso  */
     margin-top: 20px;
     text-align:center;
-    font-size: 600%;
+    /*font-size: 600%;*/
     color:#4d141d;
 }
 
-#up__left{
+#time{
     display:none;
 }
 
