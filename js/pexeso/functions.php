@@ -1,6 +1,5 @@
 <?php
 
-
 // get images
 function _get_imgs():array {
    
@@ -24,14 +23,14 @@ function _echo_img():array{
     return shuffle($images_all)? $images_all : $images_all;
 }
 
-
+// render images to page
 function view_el(array $arr){
 
     foreach ($arr as $value) {
        
     echo <<<END
          <div class='mask' onclick="completeFn(this)">
-         <img  src='pictures/pexeso/{$value}.jpg' alt='Smiley face' >  
+              <img  src='pictures/pexeso/{$value}.jpg' alt='Smiley face' >  
          </div>    
          END;
       }
