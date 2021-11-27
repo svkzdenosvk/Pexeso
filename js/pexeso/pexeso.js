@@ -13,7 +13,7 @@
     let oneOrZero2=0;/*----------------variable for random shuffling */
     let oneOrZero3=0;/*----------------randomly change 1 or 0*/
 
-   // var hardest;/*----------------------variable to trigger the hardest version of game*/
+    var hardest;/*----------------------variable to trigger the hardest version of game*/
 
     const setLevelObj={
         isSet:false,
@@ -50,7 +50,7 @@
         _setLevelChanges("white","#4d141d");
     }
 
-    function setHardest(){/*---------------------function for set the hardest version of game*/
+    function setHardest(){/*--------------------function for set the hardest version of game*/
         harder=true;
         hardest=true;     
         _setLevelChanges("white","black");
@@ -73,7 +73,7 @@
         }
     }   
 
-    function incrementSeconds(){/*-----------------change seconds number by increment */
+    function _incrementSeconds(){/*-----------------change seconds number by increment */
         seconds += 1;
         document.getElementById("seconds").innerHTML  = seconds + " s";
     }
@@ -84,12 +84,15 @@
     }
 
     function timer(){/*------------------------------------------------------button start */
+        //to hide start button 
         document.getElementById("start").style.display="none";
-        document.getElementById("harder").style.display="none";
-        document.getElementById("hardest").style.display="none";
-
-        intervalSecond=setInterval(incrementSeconds, 1000);
-        if(hardest===true){/*------------------------------------------------------working only in hardest version */
+        
+        // to see images
+        document.getElementsByClassName("column_content")[0].style.display="flex";
+  
+    
+        intervalSecond=setInterval(_incrementSeconds, 1000);
+        if(hardest===true){/*------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
             intervalShuffle=setInterval(shuffle, 450);
         }
     }
