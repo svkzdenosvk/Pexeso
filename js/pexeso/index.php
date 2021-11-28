@@ -42,8 +42,8 @@ require "functions.php";
     </div>
 
 
-    <div class="column_content">
-        <div class="row">
+    <div class="column_content" id="content">
+        <div class="row" id="row">
             <?php view_el(_echo_img()); ?>  
         </div> 
     </div>

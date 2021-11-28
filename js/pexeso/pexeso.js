@@ -93,7 +93,7 @@
     
         intervalSecond=setInterval(_incrementSeconds, 1000);
         if(hardest===true){/*------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
-            intervalShuffle=setInterval(shuffle, 450);
+            intervalShuffle=setInterval(shuffle, 600);
         }
     }
 
@@ -159,81 +159,37 @@
         }
     }
 
+    
+
+    function _shuffleArray(array) {/*---------------------------// stolen from : https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array  (EDIT: Updating to ES6 / ECMAScript 2015) */
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }    
+
     function shuffle(){/*---------------------function for shuffling (ONLY) in harder and the hardest version of game*/
 
        if(harder===true){
-           oneOrZero=(Math.random()>0.5)? 1 : 0;/*--------------------------randomly change 1 or 0*/
-           oneOrZero2=(Math.random()>0.5)? 1 : 0;/*--------------------------randomly change 1 or 0*/
-           oneOrZero3=(Math.random()>0.5)? 1 : 0;/*--------------------------randomly change 1 or 0*/
+     
+           //get HTMLcollection
+           let x= document.getElementsByClassName("div_on_click");/*-------------------------array of rows of images*/
 
-           var x= document.getElementsByClassName("row");/*-------------------------array of rows of images*/
+           //convert collection to array
+           let arr = Array.from(x);
+           _shuffleArray(arr);
 
-           var i;/*-------------------------variable for looping rows*/
-           for (i= 0; i < x.length; i++) {
-                   var p;/*-------------------------variable for looping div-s(with image-s) IN rows*/
-                   var j;/*-------------------------variable for looping rows*/
-
-                   var orderPosition;/*-------------------------variable for setting order position*/
-               p=x[i].querySelectorAll('.row >div');/*--------------------------array/list of div-s with in image-s*/
-
-               if(oneOrZero===1) {
-                   for (j = 0; j < p.length; j++) {/*-------------------------reorder position of images in row*/
-                       orderPosition = j + 3;
-                       if (orderPosition === p.length + 2) {
-                           orderPosition = 1;
-                       }
-                       if (orderPosition === p.length + 1) {
-                           orderPosition = 2;
-                       }
-
-                       p[j].style.order = orderPosition;
-                   }
-               }else{
-                   for(j= 0; j < p.length; j++){/*-------------------------reorder position of images in row from 1 */
-                        orderPosition=j+1;
-
-                       p[j].style.order=orderPosition;
-                   }
-               }
-
-                if(oneOrZero2===0) {
-                    x[i].style.flexDirection = "row-reverse";/*--------------- flex-direction in concrete row i to row-reverse*/
-                }else{/*------------------------------------------------------ flex-direction in all content to column*/
-                    document.getElementsByClassName("column_content")[0].style.flexDirection = "column";
-
-                }
-                if(oneOrZero3===1){
-                    x[i].style.flexDirection = "row";/*----------------------- flex-direction in concrete row i to row*/
-                }else{/*------------------------------------------------------ flex-direction in all content to column-reverse*/
-                     document.getElementsByClassName("column_content")[0].style.flexDirection = "column-reverse";
-                }
-
-               if((oneOrZero!==1)&&(i%2===1)){/*------------------------------------------randomly change order style verticaly  */
-                   var c= document.querySelectorAll('.column_content >div');/*--------------------------array/list of rows*/
-                   var ii;
-                   for (ii = 0; ii < c.length; ii++) {
-                       var orderC = ii + 3;
-                       if (orderC === c.length + 2) {
-                           orderC = 1;
-                       }
-                       if (orderC === c.length + 1) {
-                           orderC = 2;
-                       }
-
-                       c[ii].style.order = orderC;
-                   }
-               }
-
-               if((oneOrZero3===1)&&(i%2===0)){/*------------------------------------------ change order style verticaly back from 1    */
-                   var cc= document.querySelectorAll('.column_content >div');/*--------------------------array/list of rows*/
-                   var jj;
-                   for(jj= 0; jj < cc.length; jj++){
-                       var orderC2=jj+1;
-                       cc[jj].style.order=orderC2;
-                   }
-               }
-           }
-       }
+           //remove old collection
+           let row = document.getElementById("row");
+           row.innerHTML="";
+            
+           // add new random order of collection
+           for(let i = 0; i < arr.length; i++){
+                row.appendChild(arr[i]);
+            }
+        }
+        
+       
     }
 
     function checkEnd(){/*----------------------check if is end each picture removed */
