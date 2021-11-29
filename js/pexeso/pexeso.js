@@ -6,30 +6,27 @@
     /*----------------------------------------------------------------------------------------------------------------------------------variables ---start*/
     var stticSource =""; /*------------variable to save and then check source of image to compare and remove if same*/
     var harder;/*----------------------variable to trigger the harder version of game*/
+    var hardest;/*----------------------variable to trigger the hardest version of game*/
+
     var intervalSecond;/*--------------variable to save function of interval for seconds interval*/
     var intervalShuffle;/*-------------variable to save function of interval for shuffle interval*/
     var seconds = 0;/*-----------------variable for seconds increment*/
-    let oneOrZero=0;/*-----------------variable for random shuffling */
-    let oneOrZero2=0;/*----------------variable for random shuffling */
-    let oneOrZero3=0;/*----------------randomly change 1 or 0*/
 
-    var hardest;/*----------------------variable to trigger the hardest version of game*/
-
-    const setLevelObj={
-        isSet:false,
-        level:{
-            isNormal:false,
-            isHarder:false,
-            isHardest:false
-        }
-    }
+    // const setLevelObj={ ------------this construction may be for OOP 
+    //     isSet:false,
+    //     level:{
+    //         isNormal:false,
+    //         isHarder:false,
+    //         isHardest:false
+    //     }
+    //}
 
     /*----------------------------------------------------------------------------------------------------------------------------------variables ---end*/
 
     /*----------------------------------------------------------------------------------------------------------------------------------functions ---start*/
     /*----------------------------------------------------------------------------------------------------------------_partial-----functions ---start*/
 
-    function _setLevelChanges(colorText,colorBG){
+    function _setLevelChanges(colorText,colorBG){/*--------------------- partial function for set level of the game*/
         // set H1
         let headingText = document.getElementsByTagName("H1")[0];
         headingText.style.color=colorText;
@@ -73,17 +70,17 @@
         }
     }   
 
-    function _incrementSeconds(){/*-----------------change seconds number by increment */
+    function _incrementSeconds(){/*---------------------------------------------------change seconds number by increment */
         seconds += 1;
         document.getElementById("seconds").innerHTML  = seconds + " s";
     }
 
-    function stopTimer(){/*------------------------------------------------------stop seconds increment */
+    function stopTimer(){/*-----------------------------------------------------------stop seconds increment */
         clearInterval(intervalSecond);
         document.getElementById("seconds").style.display="none";
     }
 
-    function timer(){/*------------------------------------------------------button start */
+    function timer(){/*---------------------------------------------------------------button start */
         //to hide start button 
         document.getElementById("start").style.display="none";
         
@@ -92,7 +89,7 @@
   
     
         intervalSecond=setInterval(_incrementSeconds, 1000);
-        if(hardest===true){/*------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
+        if(hardest===true){/*---------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
             intervalShuffle=setInterval(shuffle, 600);
         }
     }
@@ -100,56 +97,65 @@
     /*----------------------------------------------------------------------------------------------------------------_partial-----functions ---end*/
     /*------------------------------------------------------------------------------------------------------------------main-----functions ---start*/
 
-    /*selected_img class is just for identification selected image(s)*/
+    function _deleteImgs(first, second){
+        first.remove();
+        second.remove();
+    }
 
-    function completeFn(element) {/*--------------------------------------------------------------the most main function to manage pexeso-code */
-        if(seconds!==0){/*----------------------U can see images after click on start button --> and seconds start to count */
-            if(element.classList.contains('mask')){/*-------------------------------if on image is joker´s image */
+    function _hideImage(elm){
+        elm.classList.add('mask');/*--------------------------------------------------hide image below joker´s image*/
+        elm.firstElementChild.style.opacity="0";/*------------------------------------hide image*/
+        elm.classList.remove('selected_img');/*---------------------------------------remove specific class for identification*/
+    }
+
+    function mainFn(element) {/*------------------------------------------------------the most main function to manage pexeso-code */
+        if(seconds!==0){/*------------------------------------------------------------U can see images after click on start button --> and seconds start to count */
+            if(element.classList.contains('mask')){/*---------------------------------if on image is joker´s image */
 
                 var imgElm = element.firstElementChild;
-                imgElm.style.opacity="100";/*---------------------------------------show image */
-                element.classList.remove('mask');/*--------------------------remove joker image */
-                element.classList.add('selected_img');/*------------------------------------give specific class for identification*/
+                imgElm.style.opacity="100";/*-----------------------------------------show image */
+                element.classList.remove('mask');/*-----------------------------------remove joker image */
+                element.classList.add('selected_img');/*------------------------------give specific class for identification*/
 
 
-                if(stticSource===""){/*---------------------------------------------------------------if no image shown, get attribute */
+                if(stticSource===""){/*-----------------------------------------------if no image is shown, get attribute */
                     stticSource=imgElm.getAttribute("src");
-                }else{/*------------------------------------------------------------------------------compare sources attribute of showed and clicked */
-                    if(stticSource===imgElm.getAttribute("src")){/*----------------------if the same --> remove images */
-                        document.body.style.pointerEvents = "none";
+                }else{/*--------------------------------------------------------------compare sources attribute of showed and clicked */
+                    
+                    let firstSelectedImg = document.getElementsByClassName("selected_img")[0];
+                    let secondSelectedImg= document.getElementsByClassName("selected_img")[1];
+
+                    if(stticSource===imgElm.getAttribute("src")){/*-------------------if the same --> remove images */
+                        document.body.style.pointerEvents = "none";/*-----------------prevent to show third image*/
                         setTimeout(function(){
-                            document.getElementsByClassName("selected_img")[1].remove();
-                            document.getElementsByClassName("selected_img")[0].remove();
-                            document.body.style.pointerEvents = "auto";
+
+                            _deleteImgs(firstSelectedImg,secondSelectedImg);
+
+                            document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
 
                             stticSource="";
 
-                            checkEnd();/*----------------------------------------------------------------after remove check if all images is removed */
+                            checkEnd();/*---------------------------------------------after remove check if all images is removed */
 
-                            shuffle();/*-------------------------------------------------------------------in harder (and hardest) version ... shuffle after bad trying*/
+                            shuffle();/*----------------------------------------------in harder (and hardest) version ... shuffle after bad trying*/
                             return;
                         }, 300);
 
-                    }else{/*------------------------------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
-                        document.body.style.pointerEvents = "none";
+                    }else{/*----------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
+                        document.body.style.pointerEvents = "none";/*-----------------prevent to show third image*/
 
                         setTimeout(function(){
-                            document.getElementsByClassName("selected_img")[1].classList.add('mask');/*------------------------------hide image below joker´s image*/
-                            document.getElementsByClassName("selected_img")[1].firstElementChild.style.opacity="0";/*----------------hide image*/
-                            document.getElementsByClassName("selected_img")[0].classList.add('mask');
-                            document.getElementsByClassName("selected_img")[0].firstElementChild.style.opacity="0";
 
-                            document.getElementsByClassName("selected_img")[1].classList.remove('selected_img');/*--------------------remove specific class for identification*/
-                            document.getElementsByClassName("selected_img")[0].classList.remove('selected_img');
+                            _hideImage(firstSelectedImg);
+                            _hideImage(secondSelectedImg);
 
-                            document.body.style.pointerEvents = "auto";
+                            document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
 
-                            stticSource="";/*--------------------------------------------------------------clear comparable variable */
+                            stticSource="";/*-----------------------------------------clear comparable variable */
 
-                            if(hardest!==true){
-                                shuffle();/*-------------------------------------------------------------------in harder (and hardest) version ... shuffle after bad trying*/
+/*(wtf is this ???)*/       if(hardest!==true){
+                                shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after bad trying*/
                             }
-
 
                             return;
                         }, 300);
@@ -195,10 +201,7 @@
     function checkEnd(){/*----------------------check if is end each picture removed */
         setTimeout(function(){
 
-            if((document.getElementsByClassName("row")[0].firstElementChild) ===0){
-                //document.getElementsByClassName("row")[1].firstElementChild +
-                //document.getElementsByClassName("row")[2].firstElementChild +
-                //document.getElementsByClassName("row")[3].firstElementChild)===0){/*----------------------if all images on page are removed */
+            if((document.getElementsByClassName("row").firstElementChild) ===0){/*----------------------if all images on page are removed */
 
                 stopTimer();/*----------------------------------------------------------------------------stop increment seconds */
                 var bodyTag=document.getElementsByTagName("BODY")[0];
