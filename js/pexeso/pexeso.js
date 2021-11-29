@@ -26,7 +26,7 @@
     /*----------------------------------------------------------------------------------------------------------------------------------functions ---start*/
     /*----------------------------------------------------------------------------------------------------------------_partial-----functions ---start*/
 
-    function _setLevelChanges(colorText,colorBG){/*--------------------- partial function for set level of the game*/
+    function _setLevelChanges(colorText,colorBG){/*--------------------------------- partial function for set level of the game*/
         // set H1
         let headingText = document.getElementsByTagName("H1")[0];
         headingText.style.color=colorText;
@@ -42,12 +42,12 @@
 
     }
 
-    function setHarder(){/*---------------------function for set the harder version of game*/
+    function setHarder(){/*----------------------------------------------------------function for set the harder version of game*/
         harder=true;
         _setLevelChanges("white","#4d141d");
     }
 
-    function setHardest(){/*--------------------function for set the hardest version of game*/
+    function setHardest(){/*---------------------------------------------------------function for set the hardest version of game*/
         harder=true;
         hardest=true;     
         _setLevelChanges("white","black");
@@ -57,7 +57,7 @@
       _setLevelChanges("black");
     }
 
-    function setLevel(level){
+    function setLevel(level){/*-------------------------------------------------------main f. for set level*/
         switch(level) {
             case "harder":
                 setHarder();
@@ -90,7 +90,7 @@
     
         intervalSecond=setInterval(_incrementSeconds, 1000);
         if(hardest===true){/*---------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
-            intervalShuffle=setInterval(shuffle, 600);
+            intervalShuffle=setInterval(shuffle, 800);
         }
     }
 
@@ -136,9 +136,11 @@
                             stticSource="";
 
                             checkEnd();/*---------------------------------------------after remove check if all images is removed */
-
-                            shuffle();/*----------------------------------------------in harder (and hardest) version ... shuffle after bad trying*/
-                            return;
+                            
+                            if(harder === true){
+                                shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after bad trying*/
+                            }
+                           
                         }, 300);
 
                     }else{/*----------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
@@ -153,10 +155,6 @@
 
                             stticSource="";/*-----------------------------------------clear comparable variable */
 
-/*(wtf is this ???)*/       if(hardest!==true){
-                                shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after bad trying*/
-                            }
-
                             return;
                         }, 300);
                     }
@@ -165,21 +163,19 @@
         }
     }
 
-    
-
-    function _shuffleArray(array) {/*---------------------------// stolen from : https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array  (EDIT: Updating to ES6 / ECMAScript 2015) */
+    function _shuffleArray(array) {/*-------------------------------------------------stolen from : https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array  (EDIT: Updating to ES6 / ECMAScript 2015) */
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
     }    
 
-    function shuffle(){/*---------------------function for shuffling (ONLY) in harder and the hardest version of game*/
+    function shuffle(){/*-------------------------------------------------------------function for shuffling (ONLY) in harder and the hardest version of game*/
 
        if(harder===true){
      
            //get HTMLcollection
-           let x= document.getElementsByClassName("div_on_click");/*-------------------------array of rows of images*/
+           let x= document.getElementsByClassName("div_on_click");/*------------------collection of divs above image*/
 
            //convert collection to array
            let arr = Array.from(x);
@@ -197,19 +193,22 @@
         
        
     }
+    function _fmtMSS(s){return(s-(s%=60))/60+(9<s?':':':0')+s} /*----------------------formate seconds on seconds and minutes*/ 
 
-    function checkEnd(){/*----------------------check if is end each picture removed */
+
+    function checkEnd(){/*-------------------------------------------------------------check if is end == each picture removed */
         setTimeout(function(){
+            if(!document.getElementById("row").firstElementChild){/*-------------------if all images on page are removed */
 
-            if((document.getElementsByClassName("row").firstElementChild) ===0){/*----------------------if all images on page are removed */
+                stopTimer();/*---------------------------------------------------------stop increment seconds */
+                let bodyTag=document.getElementsByTagName("BODY")[0];
 
-                stopTimer();/*----------------------------------------------------------------------------stop increment seconds */
-                var bodyTag=document.getElementsByTagName("BODY")[0];
-
-                bodyTag.firstElementChild.classList.add('div_center');/*----------------------start ---animation of gratulation text */
-                var headTitle=document.getElementsByTagName("H1")[0];
-                headTitle.innerHTML = "Gratulácia, vyhrali ste za "+seconds+" s";
-                headTitle.classList.add('h1End');/*-------------------------------------------end ---animation of gratulation text */
+                bodyTag.firstElementChild.classList.add('div_center');/*---------------start ---animation of gratulation text */
+                let headTitle=document.getElementsByTagName("H1")[0];
+                let endTime=_fmtMSS(seconds);
+                let timeArr=endTime.split(":");
+                headTitle.innerHTML = "Gratulácia, vyhrali ste za "+(timeArr[0]=="0"?"":timeArr[0]+"m")+" "+ timeArr[1]+"s";
+                headTitle.classList.add('h1End');/*------------------------------------end ---animation of gratulation text */
                 }
             }, 50);
         }
