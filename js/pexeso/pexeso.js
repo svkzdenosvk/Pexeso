@@ -21,7 +21,6 @@
     //         isHardest:false
     //     }
     //}
-
     /*-----------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------*/
 
     /*------------------------SETTING LEVEL F.s----------------------------------------------------*/
@@ -75,7 +74,7 @@
     /*------------------------ TIME F.s------------------------------------------------------------*/
     /*---------------------------------------------------------------------------------------------*/
 
-    function _incrementSeconds(){/*---------------------------------------------------change seconds number by increment */
+    function _incrementSeconds(){/*---------------------------------------------------partial f. for change seconds number by increment */
         seconds += 1;
         document.getElementById("seconds").innerHTML  = seconds + " s";
     }
@@ -94,23 +93,23 @@
   
     
         intervalSecond=setInterval(_incrementSeconds, 1000);
-        if(hardest==true){/*---------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
+        if(hardest==true){/*----------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
             intervalShuffle=setInterval(shuffle, 800);
         }
     }
 
-    function _fmtMSS(s){return(s-(s%=60))/60+(9<s?':':':0')+s} /*--------------------formate seconds on seconds and minutes -- stolen from Stack Overflow https://stackoverflow.com/questions/3733227/javascript-seconds-to-minutes-and-seconds*/ 
+    function _fmtMSS(s){return(s-(s%=60))/60+(9<s?':':':0')+s} /*---------------------partial f. to formate seconds on seconds and minutes -- stolen from Stack Overflow https://stackoverflow.com/questions/3733227/javascript-seconds-to-minutes-and-seconds*/ 
 
 
     /*------------------------SHOW and HIDE img F.-------------------------------------------------*/
     /*---------------------------------------------------------------------------------------------*/
 
-    function _deleteImgs(first, second){
+    function _deleteImgs(first, second){/*--------------------------------------------partial f. to remove the same showed images*/
         first.remove();
         second.remove();
     }
 
-    function _hideImage(elm){
+    function _hideImage(elm){/*-------------------------------------------------------partial f. to hide showed image*/
         elm.classList.add('mask');/*--------------------------------------------------hide image below joker´s image*/
         elm.firstElementChild.style.opacity="0";/*------------------------------------hide image*/
         elm.classList.remove('selected_img');/*---------------------------------------remove specific class for identification*/
@@ -129,7 +128,7 @@
                 element.classList.add('selected_img');/*------------------------------give specific class for identification*/
 
 
-                if(stticSource===""){/*-----------------------------------------------if no image is shown, get attribute */
+                if(stticSource===""){/*-----------------------------------------------if no image is shown, get attribute from clicked*/
                     stticSource=imgElm.getAttribute("src");
                 }else{/*--------------------------------------------------------------compare sources attribute of showed and clicked */
                     
@@ -148,7 +147,7 @@
 
                             checkEnd();/*---------------------------------------------after remove check if all images is removed */
                             
-                            if(harder == true || hardest==true){
+                            if(harder || hardest){
                                 shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
                             }
                            
@@ -166,7 +165,7 @@
 
                             stticSource="";/*-----------------------------------------clear comparable variable */
 
-                            if(harder == true || hardest==true){
+                            if(harder || hardest){
                                 shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
                             }
 
@@ -181,7 +180,7 @@
     /*-------------------------SHUFFLE F.s-----------------------------------------------------*/
     /*-----------------------------------------------------------------------------------------*/
 
-    function _shuffleArray(array) {/*-------------------------------------------------stolen from : https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array  (EDIT: Updating to ES6 / ECMAScript 2015) */
+    function _shuffleArray(array) {/*-------------------------------------------------partial f. to shuffle random positions in array stolen from : https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array  (EDIT: Updating to ES6 / ECMAScript 2015) */
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
@@ -190,7 +189,7 @@
 
     function shuffle(){/*-------------------------------------------------------------function for shuffling (ONLY) in harder and the hardest version of game*/
 
-       if(harder===true|| hardest==true){
+       if(harder|| hardest){
      
            //get HTMLcollection
            let x= document.getElementsByClassName("div_on_click");/*------------------collection of divs above image*/
@@ -206,7 +205,7 @@
            // add new random order of collection
            for(let i = 0; i < arr.length; i++){
                 row.appendChild(arr[i]);
-            }
+           }
         }              
     }
 
@@ -228,9 +227,9 @@
 
                 headTitle.innerHTML = "Gratulácia, vyhrali ste za "+(timeArr[0]=="0"?"":timeArr[0]+"m")+" "+ timeArr[1]+"s";
                 headTitle.classList.add('h1End');/*------------------------------------end ---animation of gratulation text */
-                }
-            }, 50);
-        }
+            }
+        }, 50);
+    }
 
    
 
