@@ -31,9 +31,9 @@ require "functions.php";
                 <div class="row_first_part_same" id="start" onclick="timer()">START</div>
             </div>
             <div id="up">
-                <div class="row_first_part_same" id="normal" onclick="setLevel('normal')">NORMAL</div>
-                <div class="row_first_part_same" id="harder" onclick="setLevel('harder')">HARDER</div>
-                <div class="row_first_part_same" id="hardest" onclick="setLevel('hardest')">HARDEST</div>
+                <div class="row_first_part_same" id="normal" onclick="setLevel(this)">NORMAL</div>
+                <div class="row_first_part_same" id="harder" onclick="setLevel(this)">HARDER</div>
+                <div class="row_first_part_same" id="hardest" onclick="setLevel(this)">HARDEST</div>
             </div>
 
         </div>
