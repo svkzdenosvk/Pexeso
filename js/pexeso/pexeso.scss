@@ -1,0 +1,113 @@
+/*-------------------------------------MIXINs-------------------------------------------*/
+/*--------------------------------------------------------------------------------------*/
+
+@mixin preset_btn($color:white, $radius:50%) {
+    padding:20px;
+    font-size: 300%;
+    float:left;
+    font-weight: bold;
+    color:$color;
+    border-radius: $radius;
+
+    &:hover{
+        color:#cc0606;
+    }
+  }
+
+/*------------------------------------CSS SELECTORS ------------------------------------*/
+/*--------------------------------------------------------------------------------------*/
+
+#timeAndStart{
+    display:none;
+
+    #seconds{/*-------------------------------------------div of text - seconds increment  */
+        @include preset_btn(#99103a,0%);
+    }
+
+    #start{/*---------------------------------------------button start of game  */
+        @include preset_btn();
+        background-color: #99103a;
+    }
+}
+
+#up{/*----------------------------------------------------first flex row */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+    #normal{/*--------------------------------------------button level-normal */
+        @include preset_btn(black);       
+        border:5px solid black;;
+    }
+    
+    #harder{/*--------------------------------------------button level-harder */
+        @include preset_btn();
+        background-color: #4d141d;
+       
+    }
+
+    #hardest{/*-------------------------------------------button level-hardest */
+        @include preset_btn();
+        background-color: black;
+       
+    }
+}
+
+h1{/*-----------------------------------------------------text Pexeso  */
+    margin-top: 20px;
+    text-align:center;
+    color:#4d141d;
+}
+
+.column_content{/*----------------------------------------div of all images  */
+        margin:auto;
+        max-width:850px;
+        display:none;
+    
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        .row{/*-------------------------------------------row of images  */
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            flex:50%;
+            margin-top: 1.5%;
+
+            .mask{/*--------------------------------------picture of joker  */
+                background-image: url("pictures/joker.jpg");
+                 background-position: center;
+             }
+             
+             .div_on_click{
+                 margin:3%;
+             }
+
+             img{
+                width:125px;
+                height:125px;
+                opacity: 0%;
+            }
+        }
+    }
+
+/*----------------------------------------CLASSES ADDED BY JS------------------------------------------------ */
+/*------------------------------------------------------------------------------------------------------------*/
+
+.div_center{/*-------------------------------------------centering h1 in the end */
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.h1End{/*------------------------------------------------text of gratulation  */
+    font-size:750%;
+    transition: font-size 0.52s;
+}
+
+.selected_img{
+}/*------------------------------------------------------for abstract usage -> for showed img */

@@ -3,8 +3,9 @@ require "functions.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
     <head>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8WH83JV9LP"></script>
     <script>
@@ -14,6 +15,7 @@ require "functions.php";
 
     gtag('config', 'G-8WH83JV9LP');
     </script>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -25,24 +27,22 @@ require "functions.php";
         <title>Pexeso</title>
     </head>
     <body>
-        <div>
-            <div class="row_first2">
-                <div id="timeAndStart">
-                    <div class="row_first_part_same" id="seconds" >0 s</div>
-                    <div class="row_first_part_same" id="start" onclick="timer()">START</div>
-                </div>
-                <div id="up">
-                    <div class="row_first_part_same " id="normal"  onclick="setLevel(this)">NORMAL</div>
-                    <div class="row_first_part_same " id="harder"  onclick="setLevel(this)">HARDER</div>
-                    <div class="row_first_part_same " id="hardest" onclick="setLevel(this)">HARDEST</div>
-                </div>
-
+        
+        <div >
+            <div id="timeAndStart">
+                <div  id="seconds" >0 s</div>
+                <div  id="start" onclick="timer()">START</div>
+            </div>
+            <div id="up">
+                <div  id="normal"  onclick="setLevel(this)">NORMAL</div>
+                <div  id="harder"  onclick="setLevel(this)">HARDER</div>
+                <div  id="hardest" onclick="setLevel(this)">HARDEST</div>
             </div>
 
-            <h1>Vstúpili ste do hry Pexeso, najskôr nastavte obtiažnosť</h1>
         </div>
 
-
+        <h1>Vstúpili ste do hry Pexeso, najskôr nastavte obtiažnosť</h1>
+        
         <div class="column_content" id="content">
             <div class="row" id="row">
                 <?php view_el(_echo_img()); ?>  

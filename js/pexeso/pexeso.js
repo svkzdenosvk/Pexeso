@@ -6,9 +6,8 @@
     /*----------------------------------------------------VARIABLES------------------------------------------------------------------------------*/
 
     var stticSource =""; /*------------variable to save and then check source of image to compare and remove if same*/
-    var harder;/*----------------------variable to trigger the harder version of game*/
-    var hardest;/*----------------------variable to trigger the hardest version of game*/
-
+    var level;
+  
     var intervalSecond;/*--------------variable to save function of interval for seconds interval*/
     var intervalShuffle;/*-------------variable to save function of interval for shuffle interval*/
     var seconds = 0;/*-----------------variable for seconds increment*/
@@ -43,13 +42,10 @@
     }
 
     function setHarder(){/*----------------------------------------------------------function for set the harder version of game*/
-        harder=true;
         _setLevelChanges("white","#4d141d");
     }
 
     function setHardest(){/*---------------------------------------------------------function for set the hardest version of game*/
-
-        hardest=true;     
         _setLevelChanges("white","black");
     }
 
@@ -58,7 +54,7 @@
     }
 
     function setLevel(elm){/*-------------------------------------------------------main f. for set level*/
-        let level= elm.getAttribute('id'); 
+        level= elm.getAttribute('id'); 
         switch(level) {
             case "harder":
                 setHarder();
@@ -93,7 +89,7 @@
   
     
         intervalSecond=setInterval(_incrementSeconds, 1000);
-        if(hardest==true){/*----------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
+        if(level==="hardest"){/*----------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
             intervalShuffle=setInterval(shuffle, 800);
         }
     }
@@ -147,7 +143,7 @@
 
                             checkEnd();/*---------------------------------------------after remove check if all images is removed */
                             
-                            if(harder || hardest){
+                            if(level!="normal"){
                                 shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
                             }
                            
@@ -165,7 +161,7 @@
 
                             stticSource="";/*-----------------------------------------clear comparable variable */
 
-                            if(harder || hardest){
+                            if(level!="normal"){
                                 shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
                             }
 
@@ -189,7 +185,7 @@
 
     function shuffle(){/*-------------------------------------------------------------function for shuffling (ONLY) in harder and the hardest version of game*/
 
-       if(harder|| hardest){
+        if(level!="normal"){
      
            //get HTMLcollection
            let x= document.getElementsByClassName("div_on_click");/*------------------collection of divs above image*/

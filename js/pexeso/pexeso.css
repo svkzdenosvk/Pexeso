@@ -1,114 +1,141 @@
-img{
-    width:125px;
-    height:125px;
-    opacity: 0%;
-}
-
-h1{/*-------------------------------------------text Pexeso  */
-    margin-top: 20px;
-    text-align:center;
-    /*font-size: 600%;*/
-    color:#4d141d;
-}
-
-#timeAndStart{
-    display:none;
-}
-
-.column_content{/*-------------------------------------------div of all images  */
-/*    display: flex;*/
-    margin:auto;
-    max-width:850px;
-    display:none;
-
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-.row{/*-------------------------------------------row of images  */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    flex:50%;
-    margin-top: 1.5%;
-}
-
-.mask{/*-------------------------------------------picture of joker  */
-   background-image: url("pictures/joker.jpg");
-    background-position: center;
-}
-
-.div_on_click{
-    margin:3%;
-}
-
-.row_first, #up{/*-------------------------------------------first flex row */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-#normal,#harder,#hardest{
-    border-radius: 50%;
-}
-
-#normal{/*-------------------------------------------button level-normal */
-    color:black;
-    border:5px solid black;;
-}
-
-#harder{/*-------------------------------------------button level-harder */
-    background-color: #4d141d;
-   
-}
-#hardest{/*-------------------------------------------button level-hardest */
-    background-color: black;
-   
-}
-
-.row_first_part_same{/*-------------------------------------------same properties od parts in first flex_row_first  */
-    padding:20px;
+/*-------------------------------------MIXINs-------------------------------------------*/
+/*--------------------------------------------------------------------------------------*/
+/*------------------------------------CSS SELECTORS ------------------------------------*/
+/*--------------------------------------------------------------------------------------*/
+#timeAndStart {
+  display: none; }
+  #timeAndStart #seconds {
+    /*-------------------------------------------div of text - seconds increment  */
+    padding: 20px;
     font-size: 300%;
-    float:left;
+    float: left;
     font-weight: bold;
-    color:white;
-}
-
-.row_first_part_same:hover, #normal:hover{
-    color:#cc0606;
-}
-
-#seconds{/*-------------------------------------------div of text - seconds increment  */
-    color:#99103a;
+    color: #99103a;
+    border-radius: 0%; }
+    #timeAndStart #seconds:hover {
+      color: #cc0606; }
+  #timeAndStart #start {
+    /*---------------------------------------------button start of game  */
+    padding: 20px;
+    font-size: 300%;
+    float: left;
     font-weight: bold;
-}
-
-#start{/*-------------------------------------------button start of game  */
-    background-color: #99103a;
+    color: white;
     border-radius: 50%;
-}
+    background-color: #99103a; }
+    #timeAndStart #start:hover {
+      color: #cc0606; }
 
-.flex_row_reverse{/*-------------------------------------------class for shuffle picture */
-    flex-direction:row-reverse;
-}
+#up {
+  /*----------------------------------------------------first flex row */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  #up #normal {
+    /*--------------------------------------------button level-normal */
+    padding: 20px;
+    font-size: 300%;
+    float: left;
+    font-weight: bold;
+    color: black;
+    border-radius: 50%;
+    border: 5px solid black; }
+    #up #normal:hover {
+      color: #cc0606; }
+  #up #harder {
+    /*--------------------------------------------button level-harder */
+    padding: 20px;
+    font-size: 300%;
+    float: left;
+    font-weight: bold;
+    color: white;
+    border-radius: 50%;
+    background-color: #4d141d; }
+    #up #harder:hover {
+      color: #cc0606; }
+  #up #hardest {
+    /*-------------------------------------------button level-hardest */
+    padding: 20px;
+    font-size: 300%;
+    float: left;
+    font-weight: bold;
+    color: white;
+    border-radius: 50%;
+    background-color: black; }
+    #up #hardest:hover {
+      color: #cc0606; }
 
+h1 {
+  /*-----------------------------------------------------text Pexeso  */
+  margin-top: 20px;
+  text-align: center;
+  color: #4d141d; }
 
+.column_content {
+  /*----------------------------------------div of all images  */
+  margin: auto;
+  max-width: 850px;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly; }
+  .column_content .row {
+    /*-------------------------------------------row of images  */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-flex: 50%;
+        -ms-flex: 50%;
+            flex: 50%;
+    margin-top: 1.5%; }
+    .column_content .row .mask {
+      /*--------------------------------------picture of joker  */
+      background-image: url("pictures/joker.jpg");
+      background-position: center; }
+    .column_content .row .div_on_click {
+      margin: 3%; }
+    .column_content .row img {
+      width: 125px;
+      height: 125px;
+      opacity: 0%; }
 
-/*------------------------------------------------------------------------------------------classes added by js */
-.div_center{/*-------------------------------------------centering h1 in the end */
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+/*----------------------------------------CLASSES ADDED BY JS------------------------------------------------ */
+/*------------------------------------------------------------------------------------------------------------*/
+.div_center {
+  /*-------------------------------------------centering h1 in the end */
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
 
-.h1End{/*-------------------------------------------text of gratulation  */
-    font-size:750%;
-    transition: font-size 0.52s;
-}
+.h1End {
+  /*------------------------------------------------text of gratulation  */
+  font-size: 750%;
+  -webkit-transition: font-size 0.52s;
+  transition: font-size 0.52s; }
 
-.selected_img{
-}/*-------------------------------------------for abstract usage  */
+/*------------------------------------------------------for abstract usage -> for showed img */
