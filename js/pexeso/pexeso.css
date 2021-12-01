@@ -17,6 +17,8 @@ h1{/*-------------------------------------------text Pexeso  */
 
 .column_content{/*-------------------------------------------div of all images  */
 /*    display: flex;*/
+    margin:auto;
+    max-width:850px;
     display:none;
 
     flex-direction: column;
@@ -35,6 +37,10 @@ h1{/*-------------------------------------------text Pexeso  */
 .mask{/*-------------------------------------------picture of joker  */
    background-image: url("pictures/joker.jpg");
     background-position: center;
+}
+
+.div_on_click{
+    margin:3%;
 }
 
 .row_first, #up{/*-------------------------------------------first flex row */
