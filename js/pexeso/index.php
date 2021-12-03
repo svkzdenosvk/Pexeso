@@ -20,7 +20,7 @@ require "functions.php";
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-        <script type="text/javascript" src="pexeso.js"></script>
+        <script type="text/javascript" src="pexeso.js" defer></script>
 
         <link rel="stylesheet" href="pexeso.css" >
 
@@ -31,12 +31,12 @@ require "functions.php";
         <div >
             <div id="timeAndStart">
                 <div  id="seconds" >0 s</div>
-                <div  id="start" onclick="timer()">START</div>
+                <div  id="start" >START</div>
             </div>
-            <div id="up">
-                <div  id="normal"  onclick="setLevel(this)">NORMAL</div>
-                <div  id="harder"  onclick="setLevel(this)">HARDER</div>
-                <div  id="hardest" onclick="setLevel(this)">HARDEST</div>
+            <div id="levelBtns">
+                <div  id="normal"  >NORMAL</div>
+                <div  id="harder"  >HARDER</div>
+                <div  id="hardest" >HARDEST</div>
             </div>
 
         </div>

@@ -3,7 +3,9 @@
 
      */
 
-    /*----------------------------------------------------VARIABLES------------------------------------------------------------------------------*/
+    /*------------------------------------------------- VARIABLES------------------------------------------*/
+
+    /*------------------------GLOBAL */
 
     var stticSource =""; /*------------variable to save and then check source of image to compare and remove if same*/
     var level;
@@ -12,6 +14,7 @@
     var intervalShuffle;/*-------------variable to save function of interval for shuffle interval*/
     var seconds = 0;/*-----------------variable for seconds increment*/
 
+   
     // const setLevelObj={ ------------this construction may be for OOP 
     //     isSet:false,
     //     level:{
@@ -20,6 +23,28 @@
     //         isHardest:false
     //     }
     //}
+
+    /*------------------------CONSTANTS */
+
+    const start =document.getElementById("start");
+    const levelBtns=document.getElementById("levelBtns");
+    const levelsHTMLColl = levelBtns.children;
+/*----------------------------------------------------EVENT LISTENERS------------------------------------------*/
+
+    //------START BUTTON L.
+    start.addEventListener("click",timer);
+   
+
+
+    for (let i = 0; i < levelsHTMLColl.length; i++) {
+
+        //------LEVEL BUTTONS L.
+        levelsHTMLColl[i].addEventListener("click", function(){ setLevel(this.id); });
+      }
+
+      //------IMG PEXESO CONTROL L.
+      //doplnit listener z php render funkcie !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     /*-----------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------*/
 
     /*------------------------SETTING LEVEL F.s----------------------------------------------------*/
@@ -35,7 +60,7 @@
         document.getElementsByTagName("BODY")[0].style.backgroundColor=colorBG;
         
         // set disappear settings buttons and show timer and starter of game
-        document.getElementById("up").style.display="none";
+        levelBtns.style.display="none";
         document.getElementById("timeAndStart").style.display="flex";
         document.getElementById("seconds").style.color=colorText;
 
@@ -53,8 +78,9 @@
       _setLevelChanges("black");
     }
 
-    function setLevel(elm){/*-------------------------------------------------------main f. for set level*/
-        level= elm.getAttribute('id'); 
+    function setLevel(leveliD){/*-----------------------------------------------------main f. for set level*/
+      
+        level=leveliD;
         switch(level) {
             case "harder":
                 setHarder();
@@ -82,14 +108,14 @@
 
     function timer(){/*---------------------------------------------------------------button start */
         //to hide start button 
-        document.getElementById("start").style.display="none";
+        start.style.display="none";
         
         // to see images
         document.getElementsByClassName("column_content")[0].style.display="flex";
   
     
         intervalSecond=setInterval(_incrementSeconds, 1000);
-        if(level==="hardest"){/*----------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
+        if(level==="hardest"){/*------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
             intervalShuffle=setInterval(shuffle, 800);
         }
     }

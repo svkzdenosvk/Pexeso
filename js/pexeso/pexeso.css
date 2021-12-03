@@ -26,7 +26,7 @@
     #timeAndStart #start:hover {
       color: #cc0606; }
 
-#up {
+#levelBtns {
   /*----------------------------------------------------first flex row */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -40,7 +40,7 @@
           justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap; }
-  #up #normal {
+  #levelBtns #normal {
     /*--------------------------------------------button level-normal */
     padding: 20px;
     font-size: 300%;
@@ -49,9 +49,9 @@
     color: black;
     border-radius: 50%;
     border: 5px solid black; }
-    #up #normal:hover {
+    #levelBtns #normal:hover {
       color: #cc0606; }
-  #up #harder {
+  #levelBtns #harder {
     /*--------------------------------------------button level-harder */
     padding: 20px;
     font-size: 300%;
@@ -60,9 +60,9 @@
     color: white;
     border-radius: 50%;
     background-color: #4d141d; }
-    #up #harder:hover {
+    #levelBtns #harder:hover {
       color: #cc0606; }
-  #up #hardest {
+  #levelBtns #hardest {
     /*-------------------------------------------button level-hardest */
     padding: 20px;
     font-size: 300%;
@@ -71,7 +71,7 @@
     color: white;
     border-radius: 50%;
     background-color: black; }
-    #up #hardest:hover {
+    #levelBtns #hardest:hover {
       color: #cc0606; }
 
 h1 {
