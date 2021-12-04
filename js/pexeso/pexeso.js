@@ -25,10 +25,14 @@
     //}
 
     /*------------------------CONSTANTS */
+    const secondsEl=document.getElementById("seconds");
 
     const start =document.getElementById("start");
+
     const levelBtns=document.getElementById("levelBtns");
     const levelsHTMLColl = levelBtns.children;
+
+    const imgsColl = document.getElementsByClassName("div_on_click");
 /*----------------------------------------------------EVENT LISTENERS------------------------------------------*/
 
     //------START BUTTON L.
@@ -42,8 +46,12 @@
         levelsHTMLColl[i].addEventListener("click", function(){ setLevel(this.id); });
       }
 
-      //------IMG PEXESO CONTROL L.
-      //doplnit listener z php render funkcie !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    for (let i = 0; i < imgsColl.length; i++) {
+
+        //------IMG PEXESO CONTROL L.
+        imgsColl[i].addEventListener("click", function(){ mainFn(this); });
+      }
 
     /*-----------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------*/
 
@@ -62,7 +70,7 @@
         // set disappear settings buttons and show timer and starter of game
         levelBtns.style.display="none";
         document.getElementById("timeAndStart").style.display="flex";
-        document.getElementById("seconds").style.color=colorText;
+        secondsEl.style.color=colorText;
 
     }
 
@@ -98,12 +106,12 @@
 
     function _incrementSeconds(){/*---------------------------------------------------partial f. for change seconds number by increment */
         seconds += 1;
-        document.getElementById("seconds").innerHTML  = seconds + " s";
+        secondsEl.innerHTML  = seconds + " s";
     }
 
     function stopTimer(){/*-----------------------------------------------------------stop seconds increment */
         clearInterval(intervalSecond);
-        document.getElementById("seconds").style.display="none";
+        secondsEl.style.display="none";
     }
 
     function timer(){/*---------------------------------------------------------------button start */
@@ -141,8 +149,7 @@
     /*-----------------------------------------------------------------------------------------*/
 
     function mainFn(element) {/*------------------------------------------------------the most main function to manage pexeso-code */
-        if(seconds!==0){/*------------------------------------------------------------U can see images after click on start button --> and seconds start to count */
-            if(element.classList.contains('mask')){/*---------------------------------if on image is joker´s image */
+              if(element.classList.contains('mask')){/*---------------------------------if on image is joker´s image */
 
                 var imgElm = element.firstElementChild;
                 imgElm.style.opacity="100";/*-----------------------------------------show image */
@@ -195,8 +202,8 @@
                         }, 300);
                     }
                 }
-            }
-        }
+            
+             }
     }
 
     /*-------------------------SHUFFLE F.s-----------------------------------------------------*/

@@ -29,7 +29,7 @@ function view_el(array $arr){
     foreach ($arr as $value) {
        
     echo <<<END
-         <div class='mask div_on_click' onclick="mainFn(this)">
+         <div class='mask div_on_click'>
               <img  src='pictures/pexeso/{$value}.jpg' alt='Smiley face' >  
          </div>    
          END;
