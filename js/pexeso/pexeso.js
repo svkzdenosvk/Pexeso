@@ -149,7 +149,7 @@
     /*-----------------------------------------------------------------------------------------*/
 
     function mainFn(element) {/*------------------------------------------------------the most main function to manage pexeso-code */
-              if(element.classList.contains('mask')){/*---------------------------------if on image is joker´s image */
+              if(element.classList.contains('mask')){/*-------------------------------if on image is joker´s image */
 
                 var imgElm = element.firstElementChild;
                 imgElm.style.opacity="100";/*-----------------------------------------show image */
@@ -198,7 +198,7 @@
                                 shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
                             }
 
-                            return;
+                           // return;
                         }, 300);
                     }
                 }
