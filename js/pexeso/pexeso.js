@@ -55,7 +55,7 @@
         //------AFTER ANIMATION DELETE L.
         imgsColl[i].addEventListener("animationend", function(){ _deleteImg(this); });
         //------AFTER ANIMATION SHUFFLE L.
-        imgsColl[i].addEventListener("animationend", function(){ shuffle(); });
+        imgsColl[i].addEventListener("animationend", shuffle);
 
       }
  
