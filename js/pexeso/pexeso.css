@@ -139,7 +139,8 @@ h1 {
   transition: font-size 0.52s; }
 
 .selected_img {
-  /*------------------------------------------------------for abstract usage -> for showed img */ }
+  /*------------------------------------------------------for abstract usage -> for showed img */
+  pointer-events: none; }
 
 .rotate-center {
   /*---------------------------------------animation for match and before remove images*/

@@ -153,10 +153,10 @@
         _animate(second);
     }
 
-    function _deleteImg(el){/*--------------------------------------------partial f. to remove the same showed images*/
+    function _deleteImg(el){/*--------------------------------------------------------partial f. to remove the same showed images*/
         
         el.remove();
-        checkEnd();/*---------------------------------------------after remove check if all images is removed */
+        checkEnd();/*-----------------------------------------------------------------after remove check if all images is removed */
 
    }
 

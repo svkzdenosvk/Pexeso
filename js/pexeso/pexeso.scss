@@ -110,6 +110,7 @@ h1{/*-----------------------------------------------------text Pexeso  */
 }
 
 .selected_img{/*------------------------------------------------------for abstract usage -> for showed img */
+    pointer-events: none;
     //animation: myAnim 1s ease 0s 1 normal forwards;
 }
 
