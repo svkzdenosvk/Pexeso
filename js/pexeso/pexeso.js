@@ -54,7 +54,7 @@
 
         //------AFTER ANIMATION DELETE L.
         imgsColl[i].addEventListener("animationend", function(){ _deleteImg(this); });
-
+        //------AFTER ANIMATION SHUFFLE L.
         imgsColl[i].addEventListener("animationend", function(){ shuffle(); });
 
       }
@@ -151,20 +151,11 @@
 
         _animate(first);
         _animate(second);
-
     }
 
-
-    //  function _deleteImgs(first, second){/*--------------------------------------------partial f. to remove the same showed images*/
-        
-    //      first.remove();
-    //      second.remove();
-    // }
     function _deleteImg(el){/*--------------------------------------------partial f. to remove the same showed images*/
         
         el.remove();
-        //document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
-
         checkEnd();/*---------------------------------------------after remove check if all images is removed */
 
    }
@@ -196,26 +187,13 @@
 
                     if(stticSource===imgElm.getAttribute("src")){/*-------------------if the same --> remove images */
                          document.body.style.pointerEvents = "none";/*-----------------prevent to show third image*/
-                         //setTimeout(function(){
-                        
-                            
-
+                  
                             animateAndDelete(firstSelectedImg,secondSelectedImg);
-                          
-                            
-                           
-                             document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
+                                                                      
+                            document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
 
                             stticSource="";
-
-                            // checkEnd();/*---------------------------------------------after remove check if all images is removed */
-                            
-                            // if(level!="normal"){
-                            //     shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
-                            // }
-                           
-                        // }, 300);
-                            
+                                               
                     }else{/*----------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
                         document.body.style.pointerEvents = "none";/*-----------------prevent to show third image*/
 
