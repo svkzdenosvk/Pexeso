@@ -51,7 +51,14 @@
 
         //------IMG PEXESO CONTROL L.
         imgsColl[i].addEventListener("click", function(){ mainFn(this); });
+
+        //------AFTER ANIMATION DELETE L.
+        imgsColl[i].addEventListener("animationend", function(){ _deleteImg(this); });
+
+        imgsColl[i].addEventListener("animationend", function(){ shuffle(); });
+
       }
+ 
 
     /*-----------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------*/
 
@@ -134,10 +141,33 @@
     /*------------------------SHOW and HIDE img F.-------------------------------------------------*/
     /*---------------------------------------------------------------------------------------------*/
 
-    function _deleteImgs(first, second){/*--------------------------------------------partial f. to remove the same showed images*/
-        first.remove();
-        second.remove();
+     function _animate(element){
+
+        element.classList.add("rotate-center");
+     
     }
+
+    function animateAndDelete(first,second){
+
+        _animate(first);
+        _animate(second);
+
+    }
+
+
+    //  function _deleteImgs(first, second){/*--------------------------------------------partial f. to remove the same showed images*/
+        
+    //      first.remove();
+    //      second.remove();
+    // }
+    function _deleteImg(el){/*--------------------------------------------partial f. to remove the same showed images*/
+        
+        el.remove();
+        //document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
+
+        checkEnd();/*---------------------------------------------after remove check if all images is removed */
+
+   }
 
     function _hideImage(elm){/*-------------------------------------------------------partial f. to hide showed image*/
         elm.classList.add('mask');/*--------------------------------------------------hide image below joker´s image*/
@@ -165,23 +195,27 @@
                     let secondSelectedImg= document.getElementsByClassName("selected_img")[1];
 
                     if(stticSource===imgElm.getAttribute("src")){/*-------------------if the same --> remove images */
-                        document.body.style.pointerEvents = "none";/*-----------------prevent to show third image*/
-                        setTimeout(function(){
+                         document.body.style.pointerEvents = "none";/*-----------------prevent to show third image*/
+                         //setTimeout(function(){
+                        
+                            
 
-                            _deleteImgs(firstSelectedImg,secondSelectedImg);
-
-                            document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
+                            animateAndDelete(firstSelectedImg,secondSelectedImg);
+                          
+                            
+                           
+                             document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
 
                             stticSource="";
 
-                            checkEnd();/*---------------------------------------------after remove check if all images is removed */
+                            // checkEnd();/*---------------------------------------------after remove check if all images is removed */
                             
-                            if(level!="normal"){
-                                shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
-                            }
+                            // if(level!="normal"){
+                            //     shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
+                            // }
                            
-                        }, 300);
-
+                        // }, 300);
+                            
                     }else{/*----------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
                         document.body.style.pointerEvents = "none";/*-----------------prevent to show third image*/
 
@@ -198,7 +232,7 @@
                                 shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
                             }
 
-                           // return;
+                           
                         }, 300);
                     }
                 }
