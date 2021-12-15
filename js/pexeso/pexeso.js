@@ -3,54 +3,80 @@
 
      */
 
-    /*------------------------------------------------- VARIABLES------------------------------------------*/
+    $(document).ready(function(){
+        /*------------------------------------------------- VARIABLES------------------------------------------*/
+    
+        /*------------------------GLOBAL */
+    
+        var stticSource =""; /*------------variable to save and then check source of image to compare and remove if same*/
+        var level;
+      
+        var intervalSecond;/*--------------variable to save function of interval for seconds interval*/
+        var intervalShuffle;/*-------------variable to save function of interval for shuffle interval*/
+        var seconds = 0;/*-----------------variable for seconds increment*/
+    
+       
+        // const setLevelObj={ ------------this construction may be for OOP 
+        //     isSet:false,
+        //     level:{
+        //         isNormal:false,
+        //         isHarder:false,
+        //         isHardest:false
+        //     }
+        //}
+    
+        /*------------------------CONSTANTS */
+       // const secondsEl= $('#seconds');
+    
+        //const start =$('#start');
+    
+       // const levelBtns=$('#levelBtns');
+       // const levelsHTMLColl = levelBtns.children();
+    
+        const imgsColl = $(".div_on_click");
 
-    /*------------------------GLOBAL */
 
-    var stticSource =""; /*------------variable to save and then check source of image to compare and remove if same*/
-    var level;
-  
-    var intervalSecond;/*--------------variable to save function of interval for seconds interval*/
-    var intervalShuffle;/*-------------variable to save function of interval for shuffle interval*/
-    var seconds = 0;/*-----------------variable for seconds increment*/
+
 
    
-    // const setLevelObj={ ------------this construction may be for OOP 
-    //     isSet:false,
-    //     level:{
-    //         isNormal:false,
-    //         isHarder:false,
-    //         isHardest:false
-    //     }
-    //}
 
-    /*------------------------CONSTANTS */
-    const secondsEl=document.getElementById("seconds");
-
-    const start =document.getElementById("start");
-
-    const levelBtns=document.getElementById("levelBtns");
-    const levelsHTMLColl = levelBtns.children;
-
-    const imgsColl = document.getElementsByClassName("div_on_click");
 /*----------------------------------------------------EVENT LISTENERS------------------------------------------*/
 
     //------START BUTTON L.
-    start.addEventListener("click",timer);
+    $('#start').click(function(){
+         
+        timer();
+    });
    
 
 
-    for (let i = 0; i < levelsHTMLColl.length; i++) {
+    // for (let i = 0; i < levelsHTMLColl.length; i++) {
 
+        // //------LEVEL BUTTONS L.
+        // levelsHTMLColl[i].click(function(){
+        //     setLevel($(this.id));
+        //   });
+//console.log($('#levelBtns').children());
         //------LEVEL BUTTONS L.
-        levelsHTMLColl[i].addEventListener("click", function(){ setLevel(this.id); });
-      }
+        $('#levelBtns').children().click(function(){
+         
+            setLevel($(this).attr('id'))
+        });
+
+    //   }
 
 
     for (let i = 0; i < imgsColl.length; i++) {
 
-        //------IMG PEXESO CONTROL L.
-        imgsColl[i].addEventListener("click", function(){ mainFn(this); });
+        // //------IMG PEXESO CONTROL L.
+        // imgsColl[i].addEventListener("click", function(){ mainFn(this); });
+
+        $(".div_on_click").click(function(){
+         
+            mainFn(this);
+            //setLevel($(this).attr('id'))
+        });
+
       }
 
     /*-----------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------*/
@@ -60,17 +86,16 @@
 
     function _setLevelChanges(colorText,colorBG){/*--------------------------------- partial function for set level of the game*/
         // set H1
-        let headingText = document.getElementsByTagName("H1")[0];
-        headingText.style.color=colorText;
-        headingText.textContent="Pexeso";
-
+        $('h1').first().css('color',colorText).text('Pexeso');
+       
         // set background of page
-        document.getElementsByTagName("BODY")[0].style.backgroundColor=colorBG;
+        $('body').first().css('backgroundColor',colorBG);
+        // document.getElementsByTagName("BODY")[0].style.backgroundColor=colorBG;
         
         // set disappear settings buttons and show timer and starter of game
-        levelBtns.style.display="none";
-        document.getElementById("timeAndStart").style.display="flex";
-        secondsEl.style.color=colorText;
+        $('#levelBtns').hide();
+        $("#timeAndStart").css('display', 'flex');
+        $('#seconds').css('color', colorText);
 
     }
 
@@ -106,20 +131,21 @@
 
     function _incrementSeconds(){/*---------------------------------------------------partial f. for change seconds number by increment */
         seconds += 1;
-        secondsEl.innerHTML  = seconds + " s";
+        $('#seconds').innerHTML  = seconds + " s";
     }
 
     function stopTimer(){/*-----------------------------------------------------------stop seconds increment */
         clearInterval(intervalSecond);
-        secondsEl.style.display="none";
+        $('#seconds').css("display","none");
     }
 
     function timer(){/*---------------------------------------------------------------button start */
         //to hide start button 
-        start.style.display="none";
+        $('#start').hide();
         
         // to see images
-        document.getElementsByClassName("column_content")[0].style.display="flex";
+        $('.column_content').first().css('display','flex');
+        //document.getElementsByClassName("column_content")[0].style.display="flex";
   
     
         intervalSecond=setInterval(_incrementSeconds, 1000);
@@ -263,3 +289,4 @@
    
 
 
+});
