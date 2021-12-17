@@ -27,7 +27,7 @@
       color: #cc0606; }
 
 #levelBtns {
-  /*----------------------------------------------------first flex row */
+  /*---------------------------------------------first flex row */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

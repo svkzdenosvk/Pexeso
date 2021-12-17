@@ -15,7 +15,7 @@
         var intervalShuffle;/*-------------variable to save function of interval for shuffle interval*/
         var seconds = 0;/*-----------------variable for seconds increment*/
     
-       
+       var compared;
         // const setLevelObj={ ------------this construction may be for OOP 
         //     isSet:false,
         //     level:{
@@ -66,18 +66,19 @@
     //   }
 
 
-    for (let i = 0; i < imgsColl.length; i++) {
+    //for (let i = 0; i < imgsColl.length; i++) {
 
         // //------IMG PEXESO CONTROL L.
         // imgsColl[i].addEventListener("click", function(){ mainFn(this); });
 
         $(".div_on_click").click(function(){
          
-            mainFn(this);
+
+            mainFn($(this));
             //setLevel($(this).attr('id'))
         });
 
-      }
+     // }
 
     /*-----------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------*/
 
@@ -166,70 +167,142 @@
     }
 
     function _hideImage(elm){/*-------------------------------------------------------partial f. to hide showed image*/
-        elm.classList.add('mask');/*--------------------------------------------------hide image below joker´s image*/
-        elm.firstElementChild.style.opacity="0";/*------------------------------------hide image*/
-        elm.classList.remove('selected_img');/*---------------------------------------remove specific class for identification*/
+      setTimeout(function(){
+
+          elm.addClass('mask');/*--------------------------------------------------hide image below joker´s image*/
+          elm.find(">:first-child").css('opacity', '0');//firstElementChild.style.opacity="0";/*------------------------------------hide image*/
+          elm.removeClass('selected_img');/*---------------------------------------remove specific class for identification*/
+      },300)
+    }
+
+    function _hideImages(col){
+        _hideImage(coll.first());
+       // _hideImage(coll:nth(1));
+
+        // col.each(function() {
+                               
+        //     _hideImage( $( this ));
+        //   });
     }
 
     /*-------------------------MAIN CONTROL F.-------------------------------------------------*/
     /*-----------------------------------------------------------------------------------------*/
 
     function mainFn(element) {/*------------------------------------------------------the most main function to manage pexeso-code */
-              if(element.classList.contains('mask')){/*-------------------------------if on image is joker´s image */
+              
+        
+        if(element.hasClass('mask')){/*-------------------------------if on image is joker´s image */
+                //console.log("ma mask");
+               // var imgElm = element.firstElementChild;
 
-                var imgElm = element.firstElementChild;
-                imgElm.style.opacity="100";/*-----------------------------------------show image */
-                element.classList.remove('mask');/*-----------------------------------remove joker image */
-                element.classList.add('selected_img');/*------------------------------give specific class for identification*/
+               var imgElm = element.find(">:first-child");
+
+                imgElm.css('opacity','100');/*-----------------------------------------show image */
+                element.removeClass('mask');/*-----------------------------------remove joker image */
+                element.addClass('selected_img');/*------------------------------give specific class for identification*/
 
 
                 if(stticSource===""){/*-----------------------------------------------if no image is shown, get attribute from clicked*/
-                    stticSource=imgElm.getAttribute("src");
+                   // stticSource=imgElm.getAttribute("src");
+                    stticSource=imgElm.attr("src");
+
                 }else{/*--------------------------------------------------------------compare sources attribute of showed and clicked */
-                    
-                    let firstSelectedImg = document.getElementsByClassName("selected_img")[0];
-                    let secondSelectedImg= document.getElementsByClassName("selected_img")[1];
+                   
+                    //let collSelectedImg = $('.selected_img');
 
-                    if(stticSource===imgElm.getAttribute("src")){/*-------------------if the same --> remove images */
-                        document.body.style.pointerEvents = "none";/*-----------------prevent to show third image*/
-                        setTimeout(function(){
 
-                            _deleteImgs(firstSelectedImg,secondSelectedImg);
+                  //  let firstSelectedImg = document.getElementsByClassName("selected_img")[0];
+                   // let secondSelectedImg= document.getElementsByClassName("selected_img")[1];
 
-                            document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
+                    if(stticSource===imgElm.attr("src")){/*-------------------if the same --> remove images */
+                        console.log(" same");
+
+                        $('body').css('pointerEvents','none');/*-----------------prevent to show third image*/
+                        //setTimeout(function(){
+
+
+                            $('.selected_img').fadeOut( "slow", function() {
+                                // Animation complete. 
+                                $(this).remove();
+                              });
+                           // _deleteImgs(firstSelectedImg,secondSelectedImg);
+
+                           $('body').css('pointerEvents','auto'); //document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
 
                             stticSource="";
-
+                            //console.log(stticSource);
                             checkEnd();/*---------------------------------------------after remove check if all images is removed */
                             
                             if(level!="normal"){
                                 shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
                             }
+                            return;
                            
-                        }, 300);
+                      //  }, 300); re
 
                     }else{/*----------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
-                        document.body.style.pointerEvents = "none";/*-----------------prevent to show third image*/
+                       console.log("not same");
+                        $('body').css('pointerEvents','none');/*-----------------prevent to show third image*/
+                        
 
-                        setTimeout(function(){
+                      //  $('.selected_img')
+                      //console.log($('.selected_img').first());
+                     // _hideImage($('.selected_img').first());
+//console.log($('.selected_img').last());
+                        $('.selected_img').each( function() {
+                            // Animation complete. 
+                           
 
-                            _hideImage(firstSelectedImg);
-                            _hideImage(secondSelectedImg);
+                                _hideImage($(this));
+                    
+                        });
+                        //_hideImage($('.selected_img'));
+//_hideImage($('.selected_img').last());
 
-                            document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
+stticSource="";
+console.log(stticSource);
+                            // Animation complete. 
+                          //  _hideImage($('.selected_img'));
+                         
 
-                            stticSource="";/*-----------------------------------------clear comparable variable */
+                        //setTimeout(function(){
+
+                           // _hideImage($('.selected_img'));
+
+                           // $('.selected_img').each(_hideImage($(this)));
+                           //console.log($('.selected_img'));
+                          // $('.selected_img:first').first(function() {
+                            //console.log($( this ));
+                           // _hideImage($('.selected_img:nth(1)'));
+                          //  });
+                         //  $('.selected_img:nth(1)').(function() {
+                           // console.log($( this ));
+                           // _hideImage($('.selected_img:nth(0)'));
+                         // });
+                       
+                       // _hideImages($('.selected_img'));
+
+                        //console.log($('.selected_img'));
+                          //_hideImage($('.selected_img').first());
+                          //_hideImage($('.selected_img:nth(1)'));
+
+                            // _hideImage(firstSelectedImg);
+                            // _hideImage(secondSelectedImg);
+
+                            $('body').css('pointerEvents','auto');/*-------------give back functionality to pointer*/
+
+                            //stticSource="";/*-----------------------------------------clear comparable variable */
 
                             if(level!="normal"){
                                 shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
                             }
-
+                            return;
                            // return;
-                        }, 300);
+                       // }, 300);
                     }
                 }
             
-             }
+             }else return;
     }
 
     /*-------------------------SHUFFLE F.s-----------------------------------------------------*/
@@ -274,7 +347,7 @@
                 stopTimer();/*---------------------------------------------------------stop increment seconds */
                 let endTime=_fmtMSS(seconds);/*----------------------------------------formating time */
 
-                let bodyTag=document.getElementsByTagName("BODY")[0];
+                let bodyTag=$("body");
 
                 bodyTag.firstElementChild.classList.add('div_center');/*---------------start ---animation of gratulation text */
                 let headTitle=document.getElementsByTagName("H1")[0];
