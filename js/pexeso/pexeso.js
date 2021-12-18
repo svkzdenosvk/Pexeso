@@ -189,8 +189,25 @@
                 
                     //setTimeout(function(){
                       
-                            _hideImages();
-                       
+                           // _hideImages();
+
+                        //    $('.selected_img').fadeOut( "slow", function() {
+                        //     // Animation complete. 
+                        //      if(level!="normal"){
+                        //            shuffle();/*---------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
+                        //         }  
+    
+                        //     }) 
+                        setTimeout(function(){
+                        $('.selected_img').addClass('mask').children().css('opacity','0');
+                        $('.selected_img').removeClass('selected_img');
+                        }, 300);
+                            //     // Animation complete. 
+                            //      if(level!="normal"){
+                            //            shuffle();/*---------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
+                            //         }  
+        
+                            //     }) 
                              
                         $('body').css('pointerEvents','auto');/*--------------------------give back functionality to pointer*/
     
