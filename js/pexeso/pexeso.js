@@ -136,13 +136,14 @@
        },300) 
     }
 
-    function _hideImages(){
+    function _hideImages(callback){
       
         $('.selected_img').each( function() {
             // Animation complete. 
              _hideImage($(this));
           })
           
+          if(callback) callback();
           //return new Promise(function(r){r(v);});
     }
 
@@ -189,7 +190,7 @@
                 
                     //setTimeout(function(){
                       
-                           // _hideImages();
+                            _hideImages(shuffle);
 
                         //    $('.selected_img').fadeOut( "slow", function() {
                         //     // Animation complete. 
@@ -198,10 +199,10 @@
                         //         }  
     
                         //     }) 
-                        setTimeout(function(){
-                        $('.selected_img').addClass('mask').children().css('opacity','0');
-                        $('.selected_img').removeClass('selected_img');
-                        }, 300);
+                        // setTimeout(function(){
+                        // $('.selected_img').addClass('mask').children().css('opacity','0');
+                        // $('.selected_img').removeClass('selected_img');
+                        // }, 300);
                             //     // Animation complete. 
                             //      if(level!="normal"){
                             //            shuffle();/*---------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
