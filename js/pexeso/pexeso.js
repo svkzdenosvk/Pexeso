@@ -126,14 +126,24 @@
     /*---------------------------------------------------------------------------------------------*/
 
     function _hideImage(elm){/*-------------------------------------------------------partial f. to hide showed image*/
+      //  setTimeout(function(){
         setTimeout(function(){
-
             elm.addClass('mask');/*---------------------------------------------------hide image below joker´s image*/
 
             elm.children().first().css('opacity','0');/*----------------=-------------hide image*/
 
             elm.removeClass('selected_img');/*----------------------------------------remove specific class for identification*/
-        },300)
+       },300) 
+    }
+
+    function _hideImages(){
+      
+        $('.selected_img').each( function() {
+            // Animation complete. 
+             _hideImage($(this));
+          })
+          
+          //return new Promise(function(r){r(v);});
     }
 
     /*-------------------------MAIN CONTROL F.-------------------------------------------------*/
@@ -177,18 +187,19 @@
                     
                     $('body').css('pointerEvents','none');/*----------------------prevent to show third image*/
                 
-                    $('.selected_img').each( function() {
-                       // Animation complete. 
-                        _hideImage($(this));
-                     });
-                         
-                    $('body').css('pointerEvents','auto');/*--------------------------give back functionality to pointer*/
-
-                    stticSource="";/*-------------------------------------------------clear comparable variable */
-
-                    if(level!="normal"){
-                       shuffle();/*---------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
-                    }                
+                    //setTimeout(function(){
+                      
+                            _hideImages();
+                       
+                             
+                        $('body').css('pointerEvents','auto');/*--------------------------give back functionality to pointer*/
+    
+                        stticSource="";/*-------------------------------------------------clear comparable variable */
+                     
+                        if(level!="normal"){
+                           shuffle();/*---------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
+                        }                
+                    //}, 400);
                 }
             }           
         } 
