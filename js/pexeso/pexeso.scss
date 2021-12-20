@@ -109,5 +109,14 @@ h1{/*-----------------------------------------------------text Pexeso  */
     transition: font-size 0.52s;
 }
 
-.selected_img{
-}/*------------------------------------------------------for abstract usage -> for showed img */
+.selected_img{/*------------------------------------------------------for abstract usage -> for showed img */
+  //  pointer-events: none;
+}
+.match{
+    -webkit-box-shadow: 5px 5px 44px 34px #FFD700; 
+    box-shadow: 5px 5px 44px 34px #FFD700;
+    // -webkit-box-shadow: 0 0 20px 10px #fff, 0 0 50px 25px #20C20E;
+    //             box-shadow: 0 0 20px 10px #fff, 0 0 50px 25px #20C20E;
+                // -webkit-box-shadow: 0 0 20px 10px #fff, 5px 5px 44px 34px #FFD700;
+                // box-shadow: 0 0 20px 10px #fff, 5px 5px 44px 34px #FFD700;
+}

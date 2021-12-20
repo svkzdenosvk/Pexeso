@@ -125,32 +125,31 @@
     /*------------------------SHOW and HIDE img F.-------------------------------------------------*/
     /*---------------------------------------------------------------------------------------------*/
 
-    function _hideImage(elm){/*-------------------------------------------------------partial f. to hide showed image*/
-      //  setTimeout(function(){
-        setTimeout(function(){
-            elm.addClass('mask');/*---------------------------------------------------hide image below joker´s image*/
-
-            elm.children().first().css('opacity','0');/*----------------=-------------hide image*/
-
-            elm.removeClass('selected_img');/*----------------------------------------remove specific class for identification*/
-       },300) 
-    }
-
-    function _hideImages(callback){
+    // function _hideImages(callback){
       
-        $('.selected_img').each( function() {
-            // Animation complete. 
-             _hideImage($(this));
-          })
+    //     $('.selected_img').each( function() {
+    //         // Animation complete. 
+    //          _hideImage($(this));
+    //       })
           
-          if(callback) callback();
-          //return new Promise(function(r){r(v);});
+    //       if(callback) callback();
+    //       //return new Promise(function(r){r(v);});
+    // }
+    function removeImages(){
+        $('.selected_img').children().addClass('match');
+        $('.selected_img').fadeOut( "slow", function() {
+            // Animation complete. 
+            $(this).remove();
+            checkEnd();/*-------------------------------------------------after remove check if all images is removed */
+            
+            shuffle();/*--------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
+            stticSource="";
+        })  
     }
-
     /*-------------------------MAIN CONTROL F.-------------------------------------------------*/
     /*-----------------------------------------------------------------------------------------*/
 
-    function mainFn(element) {/*------------------------------------------------------the most main function to manage pexeso-code */
+     function mainFn(element) {/*------------------------------------------------------the most main function to manage pexeso-code */
               
         
         if(element.hasClass('mask')){/*-----------------------------------------------if on image is joker´s image */
@@ -170,28 +169,36 @@
                 if(stticSource===imgElm.attr("src")){/*-------------------------------if the same --> remove images */
                 
                     $('body').css('pointerEvents','none');/*--------------------------prevent to show third image*/
+                   
+                   // removeImages();
+                    $('.selected_img').children().addClass('match');
                     $('.selected_img').fadeOut( "slow", function() {
                         // Animation complete. 
                         $(this).remove();
                         checkEnd();/*-------------------------------------------------after remove check if all images is removed */
-
-                        })             
                         
-                    $('body').css('pointerEvents','auto'); /*-------------------------give back functionality to pointer*/                 stticSource="";
-                                                    
-                    if(level!="normal"){
-                        shuffle();/*--------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
-                    }
-                                
-
+                        $('body').css('pointerEvents','auto'); /*-------------------------give back functionality to pointer*/        
+                    })             
+                    
+                    shuffle();/*--------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
+                    stticSource="";
+                        
                 }else{/*------------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
                     
                     $('body').css('pointerEvents','none');/*----------------------prevent to show third image*/
-                
-                    //setTimeout(function(){
-                      
-                            _hideImages(shuffle);
-
+                                            
+                    $('.selected_img').children().animate({ /* may change animation like in remove !!!!!!!-try if show 3. */
+                       opacity :0
+                       }, 150, function(){
+                        $('.selected_img').addClass('mask');
+                        $('.selected_img').removeClass('selected_img');
+                        
+                        $('body').css('pointerEvents','auto');/*--------------------------give back functionality to pointer*/
+                    });
+                    
+                    shuffle();
+                    stticSource="";/*-------------------------------------------------clear comparable variable */                       
+                       
                         //    $('.selected_img').fadeOut( "slow", function() {
                         //     // Animation complete. 
                         //      if(level!="normal"){
@@ -199,25 +206,7 @@
                         //         }  
     
                         //     }) 
-                        // setTimeout(function(){
-                        // $('.selected_img').addClass('mask').children().css('opacity','0');
-                        // $('.selected_img').removeClass('selected_img');
-                        // }, 300);
-                            //     // Animation complete. 
-                            //      if(level!="normal"){
-                            //            shuffle();/*---------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
-                            //         }  
-        
-                            //     }) 
-                             
-                        $('body').css('pointerEvents','auto');/*--------------------------give back functionality to pointer*/
-    
-                        stticSource="";/*-------------------------------------------------clear comparable variable */
-                     
-                        if(level!="normal"){
-                           shuffle();/*---------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
-                        }                
-                    //}, 400);
+                   
                 }
             }           
         } 
@@ -234,25 +223,23 @@
     }    
 
     function shuffle(){/*-------------------------------------------------------------function for shuffling (ONLY) in harder and the hardest version of game*/
-
         if(level!="normal"){
-     
-           //get HTMLcollection
-           let x= document.getElementsByClassName("div_on_click");/*------------------collection of divs above image*/
+            setTimeout(function(){
+        
+                //get HTMLcollection
+               arr= $('.div_on_click').toArray();
+                _shuffleArray(arr);
 
-           //convert collection to array
-           let arr = Array.from(x);
-           _shuffleArray(arr);
-
-           //remove old collection
-           let row = document.getElementById("row");
-           row.innerHTML="";
-            
-           // add new random order of collection
-           for(let i = 0; i < arr.length; i++){
-                row.appendChild(arr[i]);
-           }
-        }              
+                //remove old collection
+                //row=document.getElementById("row");
+                $('.div_on_click').detach();
+                    
+                // add new random order of collection
+               for(let i = 0; i < arr.length; i++){
+                   $('#row').append(arr[i]);
+                }
+           }, 201);            
+        }  
     }
 
     /*-------------------------CHECK END GAME F.-----------------------------------------------*/
