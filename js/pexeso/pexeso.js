@@ -45,8 +45,6 @@
        mainFn($(this));
     });
 
-     // }
-
     /*-----------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------*/
 
     /*------------------------SETTING LEVEL F.s----------------------------------------------------*/
@@ -161,8 +159,7 @@
                         
                 }else{/*--------------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
                     
-                    $('body').css('pointerEvents','none');/*--------------------------prevent to show third image*/
-                    
+                    $('body').css('pointerEvents','none');/*--------------------------prevent to show third image*/                  
                   
                     $('.selected_img').children().fadeTo( "fast", "0",function() {
                         // Animation complete. 
