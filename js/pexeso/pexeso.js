@@ -170,6 +170,8 @@
                         
                     })   
 
+                    // Alternative:
+                    
                     // $('.selected_img').children().animate({ 
                     //    opacity :0
                     //    }, 300, function(){
@@ -178,6 +180,8 @@
                         
                     //     $('body').css('pointerEvents','auto');/*-------------------give back functionality to pointer*/
                     // });
+
+                    
                     
                     shuffle();
                     stticSource="";/*-------------------------------------------------clear comparable variable */                                                                

@@ -139,7 +139,8 @@ h1 {
   transition: font-size 0.52s; }
 
 .selected_img {
-  /*------------------------------------------------------for abstract usage -> for showed img */ }
+  /*------------------------------------------------------for abstract usage -> for showed img */
+  pointer-events: none; }
 
 .match {
   -webkit-box-shadow: 5px 5px 44px 34px #FFD700;
