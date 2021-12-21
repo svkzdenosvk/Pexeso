@@ -186,26 +186,31 @@
                 }else{/*------------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
                     
                     $('body').css('pointerEvents','none');/*----------------------prevent to show third image*/
-                                            
-                    $('.selected_img').children().animate({ 
-                       opacity :0
-                       }, 300, function(){
-                        $('.selected_img').addClass('mask');
-                        $('.selected_img').removeClass('selected_img');
+                    
+                       $('.selected_img').children().fadeTo( "fast", "0",function() {
+                        // Animation complete. 
+                            $('.selected_img').addClass('mask');
+                            $('.selected_img').removeClass('selected_img');
+                            
+                            $('body').css('pointerEvents','auto');/*--------------------------give back functionality to pointer*/
                         
-                        $('body').css('pointerEvents','auto');/*--------------------------give back functionality to pointer*/
-                    });
+
+                        }) 
+                    
+                    
+
+                    // $('.selected_img').children().animate({ 
+                    //    opacity :0
+                    //    }, 300, function(){
+                    //     $('.selected_img').addClass('mask');
+                    //     $('.selected_img').removeClass('selected_img');
+                        
+                    //     $('body').css('pointerEvents','auto');/*--------------------------give back functionality to pointer*/
+                    // });
                     
                     shuffle();
                     stticSource="";/*---------------------------------------------------clear comparable variable */                       
                        
-                        //    $('.selected_img').fadeOut( "slow", function() {
-                        //     // Animation complete. 
-                        //      if(level!="normal"){
-                        //            shuffle();/*---------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
-                        //         }  
-    
-                        //     }) 
                    
                 }
             }           
