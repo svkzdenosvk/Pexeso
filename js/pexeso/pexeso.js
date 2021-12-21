@@ -114,53 +114,30 @@
         $('.column_content').first().css('display','flex');
     
         intervalSecond=setInterval(_incrementSeconds, 1000);
+
         if(level==="hardest"){/*------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
             intervalShuffle=setInterval(shuffle, 800);
         }
     }
 
     function _fmtMSS(s){return(s-(s%=60))/60+(9<s?':':':0')+s} /*---------------------partial f. to formate seconds on seconds and minutes -- stolen from Stack Overflow https://stackoverflow.com/questions/3733227/javascript-seconds-to-minutes-and-seconds*/ 
-
-
-    /*------------------------SHOW and HIDE img F.-------------------------------------------------*/
-    /*---------------------------------------------------------------------------------------------*/
-
-    // function _hideImages(callback){
-      
-    //     $('.selected_img').each( function() {
-    //         // Animation complete. 
-    //          _hideImage($(this));
-    //       })
-          
-    //       if(callback) callback();
-    //       //return new Promise(function(r){r(v);});
-    // }
-    function removeImages(){
-        $('.selected_img').children().addClass('match');
-        $('.selected_img').fadeOut( "slow", function() {
-            // Animation complete. 
-            $(this).remove();
-            checkEnd();/*-------------------------------------------------after remove check if all images is removed */
-            
-            shuffle();/*--------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
-            stticSource="";
-        })  
-    }
+   
     /*-------------------------MAIN CONTROL F.-------------------------------------------------*/
     /*-----------------------------------------------------------------------------------------*/
 
-     function mainFn(element) {/*------------------------------------------------------the most main function to manage pexeso-code */
+     function mainFn(element) {/*-----------------------------------------------------the most main function to manage pexeso-code */
               
         
         if(element.hasClass('mask')){/*-----------------------------------------------if on image is joker´s image */
              
             var imgElm = element.children().first();
             imgElm.css('opacity','100');/*--------------------------------------------show image */
-                
+          
             element.removeClass('mask');/*--------------------------------------------remove joker image */
             element.addClass('selected_img');/*---------------------------------------give specific class for identification*/
+            
 
-            if(stticSource===""){/*--------------------------------------------------if no image is shown, get attribute from clicked*/
+            if(stticSource===""){/*---------------------------------------------------if no image is shown, get attribute from clicked*/
                 
                 stticSource=imgElm.attr("src");
 
@@ -169,35 +146,32 @@
                 if(stticSource===imgElm.attr("src")){/*-------------------------------if the same --> remove images */
                 
                     $('body').css('pointerEvents','none');/*--------------------------prevent to show third image*/
-                   
-                   // removeImages();
+                          
                     $('.selected_img').children().addClass('match');
                     $('.selected_img').fadeOut( "slow", function() {
                         // Animation complete. 
                         $(this).remove();
                         checkEnd();/*-------------------------------------------------after remove check if all images is removed */
                         
-                        $('body').css('pointerEvents','auto'); /*--------------------give back functionality to pointer*/        
+                        $('body').css('pointerEvents','auto'); /*---------------------give back functionality to pointer*/        
                     })             
                     
-                    shuffle();/*-----------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
+                    shuffle();/*------------------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
                     stticSource="";
                         
-                }else{/*------------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
+                }else{/*--------------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
                     
-                    $('body').css('pointerEvents','none');/*----------------------prevent to show third image*/
+                    $('body').css('pointerEvents','none');/*--------------------------prevent to show third image*/
                     
-                       $('.selected_img').children().fadeTo( "fast", "0",function() {
+                  
+                    $('.selected_img').children().fadeTo( "fast", "0",function() {
                         // Animation complete. 
-                            $('.selected_img').addClass('mask');
-                            $('.selected_img').removeClass('selected_img');
+                        $('.selected_img').addClass('mask');
+                        $('.selected_img').removeClass('selected_img');
                             
-                            $('body').css('pointerEvents','auto');/*--------------------------give back functionality to pointer*/
+                        $('body').css('pointerEvents','auto');/*----------------------give back functionality to pointer*/
                         
-
-                        }) 
-                    
-                    
+                    })   
 
                     // $('.selected_img').children().animate({ 
                     //    opacity :0
@@ -205,13 +179,11 @@
                     //     $('.selected_img').addClass('mask');
                     //     $('.selected_img').removeClass('selected_img');
                         
-                    //     $('body').css('pointerEvents','auto');/*--------------------------give back functionality to pointer*/
+                    //     $('body').css('pointerEvents','auto');/*-------------------give back functionality to pointer*/
                     // });
                     
                     shuffle();
-                    stticSource="";/*---------------------------------------------------clear comparable variable */                       
-                       
-                   
+                    stticSource="";/*-------------------------------------------------clear comparable variable */                                                                
                 }
             }           
         } 
@@ -242,6 +214,7 @@
                for(let i = 0; i < arr.length; i++){
                    $('#row').append(arr[i]);
                 }
+
            }, 301);            
         }  
     }
@@ -255,8 +228,8 @@
             stopTimer();/*------------------------------------------------------------stop increment seconds */
             let endTime=_fmtMSS(seconds);/*-------------------------------------------formating time */
 
-            $("body").children().first().addClass('div_center');/*-------------------start ---animation of gratulation text */
-            let timeArr=endTime.split(":");/*----------------------------------------split time string (seconds:minutes) to array for separate minutes and second in gratulation text */
+            $("body").children().first().addClass('div_center');/*--------------------start ---animation of gratulation text */
+            let timeArr=endTime.split(":");/*-----------------------------------------split time string (seconds:minutes) to array for separate minutes and second in gratulation text */
 
             $("h1").text("Gratulácia, vyhrali ste za "+(timeArr[0]=="0"?"":timeArr[0]+"m")+" "+ timeArr[1]+"s");
             $("h1").addClass('h1End');/*----------------------------------------------end ---animation of gratulation text */
