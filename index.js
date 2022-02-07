@@ -5,7 +5,7 @@ const path = require('path');
 
 //if index.html not exists -> create
 
-if (!fs.existsSync('index.html')){
+if (!fs.existsSync('./view/index.html')){
   var arrPictures=[];
 
   // load pictures
@@ -98,7 +98,7 @@ if (!fs.existsSync('index.html')){
       </html>`;
 
     //create index.html file and write htmlString there
-    fs.appendFile('index.html', htmlString, function (err) {
+    fs.appendFile('./view/index.html', htmlString, function (err) {
         if (err) throw err;
         console.log('Created!');
     });

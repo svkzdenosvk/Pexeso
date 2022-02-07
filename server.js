@@ -1,21 +1,10 @@
-const http = require('http');
-const fs = require('fs');
 
-const server = http.createServer((req, res) =>{
+const express = require('express');
 
-    res.setHeader('Content-Type', 'text/html');
+const app = express();
 
-    fs.readFile('./index.html', (err, data) => {
-        if (err){
-            console.log(err);
-            res.end();
-        } else {
-            res.end(data);
-            res.statusCode = 200;
-        }
-     })
-});
+app.listen(3000);
 
-server.listen(3002, 'localhost', () => {
-    console.log(' yeah');
+app.get('/', (req, res) =>{
+    res.sendFile('./view/index.html', { root: __dirname });
 })
