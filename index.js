@@ -3,9 +3,11 @@ const imgsFolder = './pictures/pexeso';
 const fs = require('fs');
 const path = require('path');
 
+
+
 //if index.html not exists -> create
 
-if (!fs.existsSync('./view/index.html')){
+if (!fs.existsSync('./views/index.ejs')){
   var arrPictures=[];
 
   // load pictures
@@ -78,10 +80,11 @@ if (!fs.existsSync('./view/index.html')){
                               
     `;
 
+    
     //add pictures in div
     arrPictures.forEach(function(picture){
 
-    htmlString += 
+      htmlString += 
       `
               <div class='mask div_on_click'>
                     <img  src='pictures/pexeso/`+picture+`.jpg' alt='Smiley face' >  
@@ -97,8 +100,8 @@ if (!fs.existsSync('./view/index.html')){
         </body>
       </html>`;
 
-    //create index.html file and write htmlString there
-    fs.appendFile('./view/index.html', htmlString, function (err) {
+    // //create index.html file and write htmlString there
+    fs.appendFile('./views/index.ejs', htmlString, function (err) {
         if (err) throw err;
         console.log('Created!');
     });
