@@ -43,7 +43,13 @@
           <div class="column_content" id="content">
             <div class="row" id="row">
                               
-                  <%= content%>
+                  <% if (arrPictures.length >0) {%>
+                      <%  arrPictures.forEach(picture =>{ %>
+                              <div class='mask div_on_click'>
+                                    <img  src="pictures/pexeso/<%= picture%>.jpg" alt='Smiley face' >  
+                              </div>   
+                       <%})%>
+                  <%}%>
           
             </div> 
           </div>

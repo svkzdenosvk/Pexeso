@@ -20,7 +20,6 @@ const path = require('path');
 
 // array of pictures
   var arrPictures=[];
-  var arr;
 
   // load pictures
   fs.readdir(imgsFolder, (err, files) => {
@@ -44,22 +43,7 @@ const path = require('path');
 
     _shuffleArray(arrPictures);
 
-    var picturesDivs;
-    
-
-    //add pictures in div
-    arrPictures.forEach(function(picture){
-
-        picturesDivs += 
-        `
-                <div class='mask div_on_click'>
-                      <img  src='pictures/pexeso/`+picture+`.jpg' alt='Smiley face' >  
-                </div>   
-        `;
-  
-      });
-
-    //res.sendFile('./view/index.html', { root: __dirname });
-    res.render('index', {content : picturesDivs});
+    // render with shuffled array of pictures as parameter
+    res.render('index', {arrPictures});
   });
 });
