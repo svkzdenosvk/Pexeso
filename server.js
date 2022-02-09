@@ -11,9 +11,12 @@ app.set('view engine', 'ejs');
 
 app.listen(3000);
 
+//middleware & static files
+app.use(express.static(__dirname + '/public'));
+
 app.get('/', (req, res) =>{
 
-const imgsFolder = './pictures/pexeso';
+const imgsFolder = './public/pictures/pexeso';
 const fs = require('fs');
 const path = require('path');
 
