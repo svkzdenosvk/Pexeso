@@ -1,5 +1,5 @@
 
-const imgsFolder = './pictures/pexeso';
+const imgsFolder = './public/pictures/pexeso';
 const fs = require('fs');
 const path = require('path');
 
@@ -54,7 +54,7 @@ if (!fs.existsSync('./views/index.ejs')){
 
           <script type="text/javascript" src="pexeso.js" defer></script> 
 
-          <link rel="stylesheet" href="pexeso.css" >
+          <link rel="stylesheet" href="/pexeso.css" >
 
           <title>Pexeso</title>
       </head>
