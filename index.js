@@ -50,7 +50,7 @@ if (!fs.existsSync('./view/index.html')){
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-          <script type="text/javascript" src="pexeso.js" defer></script> 
+          <script type="text/javascript" src="/pexeso.js" defer></script> 
 
           <link rel="stylesheet" href="/pexeso.css" >
 
