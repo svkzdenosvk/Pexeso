@@ -42,9 +42,9 @@ export default class Pexeso{
   
         this.intervalSecond=setInterval(this._incrementSeconds, 1000);
        // modifyIntervalSecond(setInterval(_incrementSeconds, 1000));
-        if(this.level==="hardest"){/*------------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
+        if(Pexeso.level==="hardest"){/*------------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
            
-           this.intervalShuffle=setInterval(shuffle, 800);
+           this.intervalShuffle=setInterval(Pexeso.shuffle, 800);
         }
     }
 
@@ -96,7 +96,7 @@ export default class Pexeso{
 
                       Pexeso.stticSource="";/*----------------------------------clear comparable variable */
 
-                      if(this.level!="normal"){
+                      if(Pexeso.level!="normal"){
                           Pexeso.shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
                       }
 
@@ -139,7 +139,7 @@ export default class Pexeso{
 
 static shuffle(){/*-------------------------------------------------------------function for shuffling (ONLY) in harder and the hardest version of game*/
 
-    if(this.level!="normal"){
+    if(Pexeso.level!="normal"){
  
        //get HTMLcollection
        let x= document.getElementsByClassName("div_on_click");/*------------------collection of divs above image*/
