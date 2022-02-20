@@ -1,13 +1,14 @@
 export default class Pexeso{
-    stticSource=""
-    level
+    static stticSource=""
+    static level
     intervalSecond;/*--------------variable to save function of interval for seconds interval*/
     intervalShuffle;/*-------------variable to save function of interval for shuffle interval*/
-    seconds
+    static seconds=0;
+    self=this;
 
-     secondsEl=document.getElementById("seconds");
+    
+    // secondsEl=document.getElementById("seconds");
 
-     start =document.getElementById("start"); /*--------I don´t understand why is this not needed ?!?!*/
    
     
    
@@ -15,19 +16,20 @@ export default class Pexeso{
     //time
     //pictureColl
     
-    setLevel(level){
-        this.level=level;
-    }
+    // setLevel(level){
+    //     Pexeso.level=level;
+    // }
 
      _incrementSeconds(){/*---------------------------------------------------------partial f. for change seconds number by increment */
-       
-        this.seconds=this.seconds+1;
-        document.getElementById("seconds").innerHTML  = seconds + " s";
+      // console.log(Pexeso.seconds);
+      // Pexeso.setSeconds(parseInt(Pexeso.seconds)+1);
+       Pexeso.seconds=Pexeso.seconds+1;
+        document.getElementById("seconds").innerHTML  = Pexeso.seconds + " s";
     }
 
-    stopTimer(){/*-----------------------------------------------------------stop seconds increment */
-        clearInterval(intervalSecond);
-        secondsEl.style.display="none";
+    static stopTimer(){/*-----------------------------------------------------------stop seconds increment */
+        clearInterval(this.intervalSecond);
+        document.getElementById("seconds").style.display="none";
     }
 
     timer(){/*---------------------------------------------------------------button start */
@@ -42,11 +44,11 @@ export default class Pexeso{
        // modifyIntervalSecond(setInterval(_incrementSeconds, 1000));
         if(this.level==="hardest"){/*------------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
            
-           modifyIntervalShuffle(setInterval(shuffle, 800));
+           this.intervalShuffle=setInterval(shuffle, 800);
         }
     }
 
-    _fmtMSS(s){return(s-(s%=60))/60+(9<s?':':':0')+s}
+    static _fmtMSS(s){return(s-(s%=60))/60+(9<s?':':':0')+s}
 
     static _hideImage(elm){/*-------------------------------------------------------partial f. to hide showed image*/
         elm.classList.add('mask');/*--------------------------------------------------hide image below joker´s image*/
@@ -55,7 +57,7 @@ export default class Pexeso{
     }
 
 
-    mainFn(element,self) {/*----------------------------------the most main function to manage pexeso-code */
+    mainFn(element) {/*----------------------------------the most main function to manage pexeso-code */
         
         if(element.classList.contains('mask')){/*-------------------------------if on image is joker´s image */
 
@@ -65,22 +67,22 @@ export default class Pexeso{
           element.classList.add('selected_img');/*------------------------------give specific class for identification*/
 
 
-          if(this.stticSource===""){/*-----------------------------------------------if no image is shown, get attribute from clicked*/
+          if(Pexeso.stticSource===""){/*-----------------------------------------------if no image is shown, get attribute from clicked*/
              
-             this.stticSource=imgElm.getAttribute("src");
+            Pexeso.stticSource=imgElm.getAttribute("src");
           }else{/*--------------------------------------------------------------compare sources attribute of showed and clicked */
               
               let firstSelectedImg = document.getElementsByClassName("selected_img")[0];
               let secondSelectedImg= document.getElementsByClassName("selected_img")[1];
 
-              if(this.stticSource===imgElm.getAttribute("src")){/*-------------------if the same --> remove images */
+              if(Pexeso.stticSource===imgElm.getAttribute("src")){/*-------------------if the same --> remove images */
                    document.body.style.pointerEvents = "none";/*----------------prevent to show third image*/
             
                       Pexeso.animateAndDelete(firstSelectedImg,secondSelectedImg);
                                                                 
                       document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
                       
-                      self.stticSource="";
+                      Pexeso.stticSource="";
                                          
               }else{/*----------------------------------------------------------if NOT - the same src-path --> hide images below joker img */
                   document.body.style.pointerEvents = "none";/*-----------------prevent to show third image*/
@@ -92,7 +94,7 @@ export default class Pexeso{
 
                       document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
 
-                      this.stticSource="";/*----------------------------------clear comparable variable */
+                      Pexeso.stticSource="";/*----------------------------------clear comparable variable */
 
                       if(this.level!="normal"){
                           Pexeso.shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
@@ -106,7 +108,7 @@ export default class Pexeso{
        }
     }
 
-    _animate(element){
+   static _animate(element){
 
         element.classList.add("rotate-center");
     
@@ -114,14 +116,14 @@ export default class Pexeso{
 
    static animateAndDelete(first,second){
 
-        _animate(first);
-        _animate(second);
+        Pexeso._animate(first);
+        Pexeso._animate(second);
     }
 
     _deleteImg(el){/*--------------------------------------------------------partial f. to remove the same showed images*/
         
         el.remove();
-        checkEnd();/*-----------------------------------------------------------------after remove check if all images is removed */
+        this.checkEnd();/*-----------------------------------------------------------------after remove check if all images is removed */
 
     }
 
@@ -157,6 +159,68 @@ static shuffle(){/*-------------------------------------------------------------
     }              
 }
 
+ _setLevelChanges(colorText,colorBG){/*--------------------------------- partial function for set level of the game*/
+    // set H1
+    let headingText = document.getElementsByTagName("H1")[0];
+    headingText.style.color=colorText;
+    headingText.textContent="Pexeso";
 
+    // set background of page
+    document.getElementsByTagName("BODY")[0].style.backgroundColor=colorBG;
+    
+    // set disappear settings buttons and show timer and starter of game
+    levelBtns.style.display="none";
+    document.getElementById("timeAndStart").style.display="flex";
+    document.getElementById("seconds").style.color=colorText;
+
+}
+
+ setHarder(){/*----------------------------------------------------------function for set the harder version of game*/
+    this._setLevelChanges("white","#4d141d");
+}
+
+ setHardest(){/*---------------------------------------------------------function for set the hardest version of game*/
+    this._setLevelChanges("white","black");
+}
+
+ setNormal(){
+  this._setLevelChanges("black");
+}
+
+
+setLevel(leveliD){/*-----------------------------------------------------main f. for set level*/
   
+    Pexeso.level=leveliD;
+    console.log(Pexeso.level);
+    //modifyLevel(leveliD);
+    switch(Pexeso.level) {
+        case "harder":
+            this.setHarder();
+           break;
+        case "hardest":
+            this.setHardest();
+          break;
+          default:
+            this.setNormal();
+    }
+}   
+
+ checkEnd(){/*-----------------------------------------------check if is end == each picture removed */
+    setTimeout(function(){
+        if(!document.getElementById("row").firstElementChild){/*-------------------if all images on page are removed */
+
+            Pexeso.stopTimer();/*---------------------------------------------------------stop increment seconds */
+            let endTime=Pexeso._fmtMSS(Pexeso.seconds);/*----------------------------------------formating time */
+
+            let bodyTag=document.getElementsByTagName("BODY")[0];
+
+            bodyTag.firstElementChild.classList.add('div_center');/*---------------start ---animation of gratulation text */
+            let headTitle=document.getElementsByTagName("H1")[0];
+            let timeArr=endTime.split(":");/*--------------------------------------split time string (seconds:minutes) to array for separate minutes and second in gratulation text */
+
+            headTitle.innerHTML = "Gratulácia, vyhrali ste za "+(timeArr[0]=="0"?"":timeArr[0]+"m")+" "+ timeArr[1]+"s";
+            headTitle.classList.add('h1End');/*------------------------------------end ---animation of gratulation text */
+        }
+    }, 50);
+}
 }
