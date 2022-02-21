@@ -1,32 +1,36 @@
+import CheckEnd from "./CheckEnd.js";
+
 export default class ShowHideImg{
+
+    checkEndController = new CheckEnd();
+
     /*------------------------SHOW and HIDE img F.-------------------------------------------------*/
     /*---------------------------------------------------------------------------------------------*/
 
-     _animate(element){
+    static _animate(element){
 
         element.classList.add("rotate-center");
      
     }
 
-     animateAndDelete(first,second){
+    static animateAndDelete(first,second){
 
-        _animate(first);
-        _animate(second);
+        this._animate(first);
+        this._animate(second);
     }
 
-   export _deleteImg(el){/*--------------------------------------------------------partial f. to remove the same showed images*/
+    _deleteImg(el){/*-----------------------------------------------------------------partial f. to remove the same showed images*/
         
         el.remove();
-        checkEnd();/*-----------------------------------------------------------------after remove check if all images is removed */
+        this.checkEndController.checkEnd();/*--------------------------------------------------------after remove check if all images is removed */
 
    }
 
-    _hideImage(elm){/*-------------------------------------------------------partial f. to hide showed image*/
+   static _hideImage(elm){/*----------------------------------------------------------partial f. to hide showed image*/
         elm.classList.add('mask');/*--------------------------------------------------hide image below joker´s image*/
         elm.firstElementChild.style.opacity="0";/*------------------------------------hide image*/
         elm.classList.remove('selected_img');/*---------------------------------------remove specific class for identification*/
     }
 
-    // module.exports={animateAndDelete, _deleteImg, _hideImage};
 
 }

@@ -1,33 +1,38 @@
 import Pexeso from './classes/Pexeso.js';
+import Time from './classes/Time.js';
+
 
 const levelBtns=document.getElementById("levelBtns");
 const levelsHTMLColl = levelBtns.children;
 const imgsColl = document.getElementsByClassName("div_on_click");
 const start =document.getElementById("start"); /*--------I don´t understand why is this not needed ?!?!*/
 
+// ----------------------------------------------OBJECTS-------------------------------------------------
+//const timeController = new Time();
+const pexesoController = new Pexeso();
 
-const pexesoControler = new Pexeso();
+//----------------------------------------------LISTENERS-------------------------------------------------
 
-start.addEventListener("click", function() {pexesoControler.timer()});
+//start.addEventListener("click", function() {timeController.timer()});
+start.addEventListener("click", function() {pexesoController.timeController.timer()});
    
 
 
 for (let i = 0; i < levelsHTMLColl.length; i++) {
 
     //------LEVEL BUTTONS L.
-    //levelsHTMLColl[i].addEventListener("click", pexesoControler.setLevel(this.id) );
-    levelsHTMLColl[i].addEventListener("click", event => {pexesoControler.setLevel(event.target.id)} );
+    levelsHTMLColl[i].addEventListener("click", event => {pexesoController.setLevel(event.target.id)} );
 
   }
 
   for (let i = 0; i < imgsColl.length; i++) {
 
     //------IMG PEXESO CONTROL L.
-    imgsColl[i].addEventListener("click", function(){pexesoControler.mainFn(this)} );
+    imgsColl[i].addEventListener("click", function(){pexesoController.mainFn(this)} );
 
     //------AFTER ANIMATION DELETE L.
-    imgsColl[i].addEventListener("animationend", event => { pexesoControler._deleteImg(event.target) } );
+    imgsColl[i].addEventListener("animationend", event => { pexesoController.showHideImgController._deleteImg(event.target) } );
     //------AFTER ANIMATION SHUFFLE L.
-    imgsColl[i].addEventListener("animationend", pexesoControler.shuffle);
+    imgsColl[i].addEventListener("animationend", pexesoController.shuffle);
 
   }
