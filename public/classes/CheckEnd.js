@@ -1,13 +1,15 @@
 import Time from "./Time.js";
 
+/*------------------------------------ CHECKING END CLASS--------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
 export default class CheckEnd{
 
-    checkEnd(){/*-----------------------------------------------check if is end == each picture removed */
+    checkEnd(){/*---------------------------------------------------------------------check if is end == each picture removed */
         setTimeout(function(){
-            if(!document.getElementById("row").firstElementChild){/*-------------------if all images on page are removed */
+            if(!document.getElementById("row").firstElementChild){/*------------------if all images on page are removed */
     
-                Time.stopTimer();/*---------------------------------------------------------stop increment seconds */
-                let endTime=CheckEnd._fmtMSS(Time.seconds);/*----------------------------------------formating time */
+                Time.stopTimer();/*---------------------------------------------------stop increment seconds */
+                let endTime=CheckEnd._fmtMSS(Time.seconds);/*-------------------------formating time */
     
                 let bodyTag=document.getElementsByTagName("BODY")[0];
     

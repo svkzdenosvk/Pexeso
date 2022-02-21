@@ -1,3 +1,6 @@
+
+/*------------------------------- SET LEVEL CLASS----------------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
 export default class SetLevel{
 
      level 
@@ -31,7 +34,7 @@ export default class SetLevel{
     }
     
     
-    setLevel(leveliD){/*-----------------------------------------------------main f. for set level*/
+    setLevel(leveliD){/*-------------------------------------------------------main f. for set level*/
       
         this.level=leveliD;
         //modifyLevel(leveliD);

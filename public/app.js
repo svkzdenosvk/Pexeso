@@ -1,6 +1,4 @@
 import Pexeso from './classes/Pexeso.js';
-import Time from './classes/Time.js';
-
 
 const levelBtns=document.getElementById("levelBtns");
 const levelsHTMLColl = levelBtns.children;
@@ -8,12 +6,10 @@ const imgsColl = document.getElementsByClassName("div_on_click");
 const start =document.getElementById("start"); /*--------I don´t understand why is this not needed ?!?!*/
 
 // ----------------------------------------------OBJECTS-------------------------------------------------
-//const timeController = new Time();
 const pexesoController = new Pexeso();
 
 //----------------------------------------------LISTENERS-------------------------------------------------
 
-//start.addEventListener("click", function() {timeController.timer()});
 start.addEventListener("click", function() {pexesoController.timeController.timer()});
    
 
@@ -33,6 +29,6 @@ for (let i = 0; i < levelsHTMLColl.length; i++) {
     //------AFTER ANIMATION DELETE L.
     imgsColl[i].addEventListener("animationend", event => { pexesoController.showHideImgController._deleteImg(event.target) } );
     //------AFTER ANIMATION SHUFFLE L.
-    imgsColl[i].addEventListener("animationend", pexesoController.shuffle);
+    imgsColl[i].addEventListener("animationend", Pexeso.shuffleController.shuffle);
 
   }

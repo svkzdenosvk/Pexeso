@@ -1,18 +1,21 @@
 import Time from "./Time.js";
 import ShowHideImg from "./ShowHideImg.js";
 import SetLevel from "./SetLevel.js";
+import Shuffle from "./Shuffle.js";
 
+/*-------------------------------MAIN CONTROLLING CLASS----------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
 export default class Pexeso{
 
     static stticSource=""
-    //static level
-    
+     
     timeController= new Time();
     showHideImgController = new ShowHideImg();
     static setLevelController = new SetLevel();
+    static shuffleController= new Shuffle();
     
 
-    mainFn(element) {/*----------------------------------the most main function to manage pexeso-code */
+    mainFn(element) {/*---------------------------------------------------------the most main function to manage pexeso-code */
         
         if(element.classList.contains('mask')){/*-------------------------------if on image is joker´s image */
 
@@ -22,7 +25,7 @@ export default class Pexeso{
           element.classList.add('selected_img');/*------------------------------give specific class for identification*/
 
 
-          if(Pexeso.stticSource===""){/*-----------------------------------------------if no image is shown, get attribute from clicked*/
+          if(Pexeso.stticSource===""){/*----------------------------------------if no image is shown, get attribute from clicked*/
              
             Pexeso.stticSource=imgElm.getAttribute("src");
           }else{/*--------------------------------------------------------------compare sources attribute of showed and clicked */
@@ -30,7 +33,7 @@ export default class Pexeso{
               let firstSelectedImg = document.getElementsByClassName("selected_img")[0];
               let secondSelectedImg= document.getElementsByClassName("selected_img")[1];
 
-              if(Pexeso.stticSource===imgElm.getAttribute("src")){/*-------------------if the same --> remove images */
+              if(Pexeso.stticSource===imgElm.getAttribute("src")){/*------------if the same --> remove images */
                    document.body.style.pointerEvents = "none";/*----------------prevent to show third image*/
             
                       ShowHideImg.animateAndDelete(firstSelectedImg,secondSelectedImg);
@@ -52,7 +55,7 @@ export default class Pexeso{
                       Pexeso.stticSource="";/*----------------------------------clear comparable variable */
 
                       if(Pexeso.setLevelController.level!="normal"){
-                          Pexeso.shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
+                        Pexeso.shuffleController.shuffle();/*-------------------in harder (and hardest) version ... shuffle after good trying*/
                       }
 
                      
@@ -62,41 +65,5 @@ export default class Pexeso{
       
        }
     }
-
-
-
-    
-
-// module.exports={animateAndDelete, _deleteImg, _hideImage};
- static _shuffleArray(array) {/*-------------------------------------------------partial f. to shuffle random positions in array stolen from : https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array  (EDIT: Updating to ES6 / ECMAScript 2015) */
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}    
-
-static shuffle(){/*-------------------------------------------------------------function for shuffling (ONLY) in harder and the hardest version of game*/
-
-    if(Pexeso.setLevelController.level!="normal"){
- 
-       //get HTMLcollection
-       let x= document.getElementsByClassName("div_on_click");/*------------------collection of divs above image*/
-
-       //convert collection to array
-       let arr = Array.from(x);
-       Pexeso._shuffleArray(arr);
-
-       //remove old collection
-       let row = document.getElementById("row");
-       row.innerHTML="";
-        
-       // add new random order of collection
-       for(let i = 0; i < arr.length; i++){
-            row.appendChild(arr[i]);
-       }
-    }              
-}
-
- 
  
 }

@@ -1,11 +1,11 @@
 import CheckEnd from "./CheckEnd.js";
 
+/*------------------------SHOW and HIDE img CLASS----------------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
 export default class ShowHideImg{
 
     checkEndController = new CheckEnd();
 
-    /*------------------------SHOW and HIDE img F.-------------------------------------------------*/
-    /*---------------------------------------------------------------------------------------------*/
 
     static _animate(element){
 
@@ -22,7 +22,7 @@ export default class ShowHideImg{
     _deleteImg(el){/*-----------------------------------------------------------------partial f. to remove the same showed images*/
         
         el.remove();
-        this.checkEndController.checkEnd();/*--------------------------------------------------------after remove check if all images is removed */
+        this.checkEndController.checkEnd();/*-----------------------------------------after remove check if all images is removed */
 
    }
 

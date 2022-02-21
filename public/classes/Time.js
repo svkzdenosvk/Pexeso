@@ -1,5 +1,7 @@
 import Pexeso from "./Pexeso.js";
 
+/*-------------------------------about TIME CLASS----------------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
 export default class Time {
     
    
@@ -10,18 +12,17 @@ export default class Time {
     
 
     _incrementSeconds(){/*---------------------------------------------------------partial f. for change seconds number by increment */
-        // console.log(Pexeso.seconds);
-        // Pexeso.setSeconds(parseInt(Pexeso.seconds)+1);
+       
         Time.seconds=Time.seconds+1;
           document.getElementById("seconds").innerHTML  = Time.seconds + " s";
       }
   
-      static stopTimer(){/*-----------------------------------------------------------stop seconds increment */
+      static stopTimer(){/*--------------------------------------------------------stop seconds increment */
           clearInterval(this.intervalSecond);
           document.getElementById("seconds").style.display="none";
       }
   
-      timer(){/*---------------------------------------------------------------button start */
+      timer(){/*-------------------------------------------------------------------button start */
           
           //to hide start button 
           start.style.display="none";
@@ -31,9 +32,9 @@ export default class Time {
     
           this.intervalSecond=setInterval(this._incrementSeconds, 1000);
          // modifyIntervalSecond(setInterval(_incrementSeconds, 1000));
-          if(Pexeso.setLevelController.level==="hardest"){/*------------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
+          if(Pexeso.setLevelController.level==="hardest"){/*------------------------working only in hardest version *//*maybe this can by removed from timer();*/
              
-             this.intervalShuffle=setInterval(Pexeso.shuffle, 800);
+             this.intervalShuffle=setInterval(Pexeso.shuffleController.shuffle, 800);
           }
       }
 }
