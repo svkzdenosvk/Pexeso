@@ -21,7 +21,7 @@ start.addEventListener("click", function() {pexesoController.timeController.time
 for (let i = 0; i < levelsHTMLColl.length; i++) {
 
     //------LEVEL BUTTONS L.
-    levelsHTMLColl[i].addEventListener("click", event => {pexesoController.setLevel(event.target.id)} );
+    levelsHTMLColl[i].addEventListener("click", event => {Pexeso.setLevelController.setLevel(event.target.id)} );
 
   }
 

@@ -31,7 +31,7 @@ export default class Time {
     
           this.intervalSecond=setInterval(this._incrementSeconds, 1000);
          // modifyIntervalSecond(setInterval(_incrementSeconds, 1000));
-          if(Pexeso.level==="hardest"){/*------------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
+          if(Pexeso.setLevelController.level==="hardest"){/*------------------------------------------------------------working only in hardest version *//*maybe this can by removed from timer();*/
              
              this.intervalShuffle=setInterval(Pexeso.shuffle, 800);
           }

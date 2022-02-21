@@ -1,13 +1,15 @@
 import Time from "./Time.js";
 import ShowHideImg from "./ShowHideImg.js";
+import SetLevel from "./SetLevel.js";
 
 export default class Pexeso{
 
     static stticSource=""
-    static level
+    //static level
     
     timeController= new Time();
     showHideImgController = new ShowHideImg();
+    static setLevelController = new SetLevel();
     
 
     mainFn(element) {/*----------------------------------the most main function to manage pexeso-code */
@@ -49,7 +51,7 @@ export default class Pexeso{
 
                       Pexeso.stticSource="";/*----------------------------------clear comparable variable */
 
-                      if(Pexeso.level!="normal"){
+                      if(Pexeso.setLevelController.level!="normal"){
                           Pexeso.shuffle();/*------------------------------------------in harder (and hardest) version ... shuffle after good trying*/
                       }
 
@@ -75,7 +77,7 @@ export default class Pexeso{
 
 static shuffle(){/*-------------------------------------------------------------function for shuffling (ONLY) in harder and the hardest version of game*/
 
-    if(Pexeso.level!="normal"){
+    if(Pexeso.setLevelController.level!="normal"){
  
        //get HTMLcollection
        let x= document.getElementsByClassName("div_on_click");/*------------------collection of divs above image*/
@@ -95,50 +97,6 @@ static shuffle(){/*-------------------------------------------------------------
     }              
 }
 
- _setLevelChanges(colorText,colorBG){/*--------------------------------- partial function for set level of the game*/
-    // set H1
-    let headingText = document.getElementsByTagName("H1")[0];
-    headingText.style.color=colorText;
-    headingText.textContent="Pexeso";
-
-    // set background of page
-    document.getElementsByTagName("BODY")[0].style.backgroundColor=colorBG;
-    
-    // set disappear settings buttons and show timer and starter of game
-    levelBtns.style.display="none";
-    document.getElementById("timeAndStart").style.display="flex";
-    document.getElementById("seconds").style.color=colorText;
-
-}
-
- setHarder(){/*----------------------------------------------------------function for set the harder version of game*/
-    this._setLevelChanges("white","#4d141d");
-}
-
- setHardest(){/*---------------------------------------------------------function for set the hardest version of game*/
-    this._setLevelChanges("white","black");
-}
-
- setNormal(){
-  this._setLevelChanges("black");
-}
-
-
-setLevel(leveliD){/*-----------------------------------------------------main f. for set level*/
-  
-    Pexeso.level=leveliD;
-    //modifyLevel(leveliD);
-    switch(Pexeso.level) {
-        case "harder":
-            this.setHarder();
-           break;
-        case "hardest":
-            this.setHardest();
-          break;
-          default:
-            this.setNormal();
-    }
-}   
-
+ 
  
 }
