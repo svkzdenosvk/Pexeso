@@ -1,37 +1,27 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var Pexeso_1 = __importDefault(require("./Pexeso"));
+import Pexeso from "./Pexeso.js";
 /*------------------------------------ SHUFFLE CLASS-------------------------------------------*/
 /*---------------------------------------------------------------------------------------------*/
-var Shuffle = /** @class */ (function () {
-    function Shuffle() {
-    }
-    Shuffle.prototype._shuffleArray = function (array) {
-        var _a;
-        for (var i = array.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            _a = [array[j], array[i]], array[i] = _a[0], array[j] = _a[1];
+export default class Shuffle {
+    _shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
-    };
-    Shuffle.prototype.shuffle = function () {
-        if (Pexeso_1.default.setLevelController.getLevel() != "normal") {
+    }
+    shuffle() {
+        if (Pexeso.setLevelController.getLevel() != "normal") {
             //get HTMLcollection
-            var x = document.getElementsByClassName("div_on_click"); /*------------------collection of divs above image*/
+            let x = document.getElementsByClassName("div_on_click"); /*------------------collection of divs above image*/
             //convert collection to array
-            var arr = Array.from(x);
-            this._shuffleArray(arr);
+            let arr = [].slice.call(x);
+            Pexeso.shuffleController._shuffleArray(arr);
             //remove old collection
-            var row = document.getElementById("row");
+            let row = document.getElementById("row");
             row.innerHTML = "";
             // add new random order of collection
-            for (var i = 0; i < arr.length; i++) {
+            for (let i = 0; i < arr.length; i++) {
                 row.appendChild(arr[i]);
             }
         }
-    };
-    return Shuffle;
-}());
-exports.default = Shuffle;
+    }
+}

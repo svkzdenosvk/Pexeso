@@ -11,15 +11,21 @@ export default class SetLevel{
 
     private _setLevelChanges(colorText:string,colorBG?:string){/*--------------------------------- partial function for set level of the game*/
         // set H1
-        let headingText = document.getElementsByTagName("H1")[0];
+        let headingTextColl = document.getElementsByTagName('H1') as HTMLCollectionOf<HTMLElement>  
+        let headingText= headingTextColl[0];
+
         headingText.style.color=colorText;
         headingText.textContent="Pexeso";
     
         // set background of page
-        document.getElementsByTagName("BODY")[0].style.backgroundColor=colorBG;
+        let bodyColl = document.getElementsByTagName('BODY') as HTMLCollectionOf<HTMLElement>
+        let body= bodyColl[0]
+
+        body.style.backgroundColor=colorBG;
         
         // set disappear settings buttons and show timer and starter of game
-        levelBtns.style.display="none";
+        
+        document.getElementById("levelBtns").style.display="none";
         document.getElementById("timeAndStart").style.display="flex";
         document.getElementById("seconds").style.color=colorText;
     

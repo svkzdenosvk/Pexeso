@@ -21,10 +21,12 @@ var Time = /** @class */ (function () {
         //to hide start button 
         document.getElementById("start").style.display = "none";
         // to see images
-        document.getElementsByClassName("column_content")[0].style.display = "flex";
+        var columnContentColl = document.getElementsByClassName('column_content');
+        var columnContentEl = columnContentColl[0];
+        columnContentEl.style.display = "flex";
         Time.intervalSecond = setInterval(this._incrementSeconds, 1000);
         // modifyIntervalSecond(setInterval(_incrementSeconds, 1000));
-        if (Pexeso_js_1.default.setLevelController.level === "hardest") { /*------------------------working only in hardest version */ /*maybe this can by removed from timer();*/
+        if (Pexeso_js_1.default.setLevelController.getLevel() === "hardest") { /*------------------------working only in hardest version */ /*maybe this can by removed from timer();*/
             this.intervalShuffle = setInterval(Pexeso_js_1.default.shuffleController.shuffle, 800);
         }
     };

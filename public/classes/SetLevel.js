@@ -1,35 +1,34 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /*------------------------------- SET LEVEL CLASS----------------------------------------------*/
 /*---------------------------------------------------------------------------------------------*/
-var SetLevel = /** @class */ (function () {
-    function SetLevel() {
-    }
-    SetLevel.prototype.getLevel = function () {
+export default class SetLevel {
+    getLevel() {
         return this.level;
-    };
-    SetLevel.prototype._setLevelChanges = function (colorText, colorBG) {
+    }
+    _setLevelChanges(colorText, colorBG) {
         // set H1
-        var headingText = document.getElementsByTagName("H1")[0];
+        let headingTextColl = document.getElementsByTagName('H1');
+        let headingText = headingTextColl[0];
         headingText.style.color = colorText;
         headingText.textContent = "Pexeso";
         // set background of page
-        document.getElementsByTagName("BODY")[0].style.backgroundColor = colorBG;
+        let bodyColl = document.getElementsByTagName('BODY');
+        let body = bodyColl[0];
+        body.style.backgroundColor = colorBG;
         // set disappear settings buttons and show timer and starter of game
-        levelBtns.style.display = "none";
+        document.getElementById("levelBtns").style.display = "none";
         document.getElementById("timeAndStart").style.display = "flex";
         document.getElementById("seconds").style.color = colorText;
-    };
-    SetLevel.prototype.setHarder = function () {
+    }
+    setHarder() {
         this._setLevelChanges("white", "#4d141d");
-    };
-    SetLevel.prototype.setHardest = function () {
+    }
+    setHardest() {
         this._setLevelChanges("white", "black");
-    };
-    SetLevel.prototype.setNormal = function () {
+    }
+    setNormal() {
         this._setLevelChanges("black");
-    };
-    SetLevel.prototype.setLevel = function (leveliD) {
+    }
+    setLevel(leveliD) {
         this.level = leveliD;
         //modifyLevel(leveliD);
         switch (this.level) {
@@ -42,7 +41,5 @@ var SetLevel = /** @class */ (function () {
             default:
                 this.setNormal();
         }
-    };
-    return SetLevel;
-}());
-exports.default = SetLevel;
+    }
+}

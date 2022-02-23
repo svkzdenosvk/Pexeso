@@ -1,4 +1,4 @@
-import Time from "./Time..js";
+import Time from "./Time.js";
 import ShowHideImg from "./ShowHideImg.js";
 import SetLevel from "./SetLevel.js";
 import Shuffle from "./Shuffle.js";
@@ -15,11 +15,13 @@ export default class Pexeso{
     static shuffleController = new Shuffle();
     
 
-    mainFn(element:HTMLDivElement) {/*---------------------------------------------------------the most main function to manage pexeso-code */
-        
+    mainFn(element: HTMLElement) {/*---------------------------------------------------------the most main function to manage pexeso-code */
+      
         if(element.classList.contains('mask')){/*-------------------------------if on image is joker´s image */
 
-          var imgElm  = element.firstElementChild;
+          //var imgElm  = element.firstElementChild;
+          let imgElmColl  = element.children as HTMLCollectionOf<HTMLElement>  ;
+          let imgElm = imgElmColl[0]
           imgElm.style.opacity="100";/*-----------------------------------------show image */
           element.classList.remove('mask');/*-----------------------------------remove joker image */
           element.classList.add('selected_img');/*------------------------------give specific class for identification*/
@@ -30,12 +32,14 @@ export default class Pexeso{
             Pexeso.stticSource=imgElm.getAttribute("src");
           }else{/*--------------------------------------------------------------compare sources attribute of showed and clicked */
               
-              let firstSelectedImg  = document.getElementsByClassName("selected_img")[0];
-              let secondSelectedImg= document.getElementsByClassName("selected_img")[1];
+              let selectedDivImgColl= document.getElementsByClassName("selected_img") as HTMLCollectionOf<HTMLDivElement>
+              let firstSelectedImg  = selectedDivImgColl[0];
+              let secondSelectedImg= selectedDivImgColl[1];
 
               if(Pexeso.stticSource===imgElm.getAttribute("src")){/*------------if the same --> remove images */
                    document.body.style.pointerEvents = "none";/*----------------prevent to show third image*/
             
+                   //this.showHideImgController.animateAndDelete(firstSelectedImg,secondSelectedImg);
                    this.showHideImgController.animateAndDelete(firstSelectedImg,secondSelectedImg);
                                                                 
                       document.body.style.pointerEvents = "auto";/*-------------give back functionality to pointer*/
@@ -54,7 +58,7 @@ export default class Pexeso{
 
                       Pexeso.stticSource="";/*----------------------------------clear comparable variable */
 
-                      if(Pexeso.setLevelController.level!="normal"){
+                      if(Pexeso.setLevelController.getLevel()!="normal"){
                         Pexeso.shuffleController.shuffle();/*-------------------in harder (and hardest) version ... shuffle after good trying*/
                       }
 

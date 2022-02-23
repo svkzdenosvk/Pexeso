@@ -1,4 +1,4 @@
-import Pexeso from './classes/Pexeso';
+import Pexeso from './classes/Pexeso.js';
 
 const levelBtns=document.getElementById("levelBtns");
 const levelsHTMLColl = levelBtns.children;
@@ -17,17 +17,17 @@ start.addEventListener("click", function() {pexesoController.timeController.time
 for (let i = 0; i < levelsHTMLColl.length; i++) {
 
     //------LEVEL BUTTONS L.
-    levelsHTMLColl[i].addEventListener("click", event => {Pexeso.setLevelController.setLevel(event.target.id)} );
+   levelsHTMLColl[i].addEventListener("click", event => {Pexeso.setLevelController.setLevel((event.target as HTMLDivElement).id)} );
 
   }
 
   for (let i = 0; i < imgsColl.length; i++) {
 
     //------IMG PEXESO CONTROL L.
-    imgsColl[i].addEventListener("click", function(){pexesoController.mainFn(this)} );
+    imgsColl[i].addEventListener("click", event =>pexesoController.mainFn(event.currentTarget as HTMLElement) );
 
     //------AFTER ANIMATION DELETE L.
-    imgsColl[i].addEventListener("animationend", event => { pexesoController.showHideImgController._deleteImg(event.target) } );
+    imgsColl[i].addEventListener("animationend", event => pexesoController.showHideImgController._deleteImg(event.target as HTMLDivElement) );
     //------AFTER ANIMATION SHUFFLE L.
     imgsColl[i].addEventListener("animationend", Pexeso.shuffleController.shuffle);
 

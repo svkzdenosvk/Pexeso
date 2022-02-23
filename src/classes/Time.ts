@@ -7,11 +7,12 @@ export default class Time {
    
     static seconds=0;
     
-    intervalSecond;/*--------------variable to save function of interval for seconds interval*/
-    intervalShuffle;/*-------------variable to save function of interval for shuffle interval*/
+    //intervalSecond:number=0/*--------------variable to save function of interval for seconds interval*/
+    intervalShuffle: number;/*-------------variable to save function of interval for shuffle interval*/
+    static intervalSecond: number;
     
 
-    _incrementSeconds(){/*---------------------------------------------------------partial f. for change seconds number by increment */
+    private _incrementSeconds(){/*---------------------------------------------------------partial f. for change seconds number by increment */
        
         Time.seconds=Time.seconds+1;
           document.getElementById("seconds").innerHTML  = Time.seconds + " s";
@@ -25,14 +26,16 @@ export default class Time {
       timer(){/*-------------------------------------------------------------------button start */
           
           //to hide start button 
-          start.style.display="none";
+          document.getElementById("start").style.display="none";
           
           // to see images
-          document.getElementsByClassName("column_content")[0].style.display="flex";
+          let columnContentColl = document.getElementsByClassName('column_content') as HTMLCollectionOf<HTMLElement>  
+          let columnContentEl= columnContentColl[0];
+          columnContentEl.style.display="flex";
     
-          this.intervalSecond=setInterval(this._incrementSeconds, 1000);
+          Time.intervalSecond=setInterval(this._incrementSeconds, 1000);
          // modifyIntervalSecond(setInterval(_incrementSeconds, 1000));
-          if(Pexeso.setLevelController.level==="hardest"){/*------------------------working only in hardest version *//*maybe this can by removed from timer();*/
+          if(Pexeso.setLevelController.getLevel()==="hardest"){/*------------------------working only in hardest version *//*maybe this can by removed from timer();*/
              
              this.intervalShuffle=setInterval(Pexeso.shuffleController.shuffle, 800);
           }
