@@ -1,5 +1,6 @@
 //import logo from './logo.svg';
-import { useState, useRef } from "react";
+//import { useState, useRef } from "react";
+import { useState } from "react";
 
 import { DivPictures } from "./components/DivPictures";
 import { LevelBtn } from "./components/LevelBtn";
@@ -12,7 +13,7 @@ function App() {
   //const levelBtns=this.refs.levelBtns;
   // const levelBtns=useRef();
   // const secondsEl=useRef();
-  const headingText = useRef();
+  //const headingText = useRef();
 
   const [level, setLevel] = useState("");
   const [h1Style, setH1style] = useState("");
@@ -63,28 +64,28 @@ function App() {
     //headingText.style.color=colorText;
     //  headingText.current.style({color:colorText});
     setH1context("Pexeso");
-     headingText.textContent="Pexeso";
+    // headingText.textContent="Pexeso";
 
     // set background of page
     document.getElementsByTagName("BODY")[0].style.backgroundColor = colorBG;
 
     // set disappear settings buttons and show timer and starter of game
-    //levelBtns.style.display="none";
-    setLevelBtnsStyle("display:none");
-    //document.getElementById("timeAndStart").style.display="flex";
-    setTimeAndStartStyle("display:flex");
+    levelBtns.style.display="none";
+    //setLevelBtnsStyle("display:none");
+    document.getElementById("timeAndStart").style.display="flex";
+    //setTimeAndStartStyle("display:flex");
     // secondsEl.style.color=colorText;
     setSecondsStylle("color", colorText);
   }
 
   function setHarder() {
     /*----------------------------------------------------------function for set the harder version of game*/
-    this._setLevelChanges("white", "#4d141d");
+    _setLevelChanges("white", "#4d141d");
   }
 
   function setHardest() {
     /*---------------------------------------------------------function for set the hardest version of game*/
-    this._setLevelChanges("white", "blue");
+    _setLevelChanges("white", "black");
   }
 
   function setNormal() {
@@ -93,7 +94,6 @@ function App() {
 
   function my_setLevel(leveliD ) {
     /*-----------------------------------------------------main f. for set level*/
-console.log("som v my_setlevel f");
     setLevel(leveliD);
     switch (level) {
       case "harder":
@@ -114,8 +114,10 @@ console.log("som v my_setlevel f");
     <div className="App">
       <div>
         {/* <TimeAndStart /> */}
-        <div id="timeAndStart" style={{ timeAndStartStyle }}>
+        <div id="timeAndStart" >
+          {/* <div id="seconds" ref={secondsEl} style={{ secondsStyle }}> */}
           <div id="seconds" ref={secondsEl} style={{ secondsStyle }}>
+
             0 s
           </div>
           {/* <div onClick={timer} id="start" >START</div> */}
@@ -128,7 +130,8 @@ console.log("som v my_setlevel f");
         </div>
       </div>
 
-      <h1 style={{ h1Style }} ref={headingText}>
+      {/* <h1 style={{ h1Style }} ref={headingText}> */}
+      <h1 style={{ h1Style }} >
         {h1Context}
       </h1>
 
