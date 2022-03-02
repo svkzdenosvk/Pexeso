@@ -93,7 +93,7 @@ function App() {
 
   function my_setLevel(leveliD ) {
     /*-----------------------------------------------------main f. for set level*/
-console.log("som v my_set f");
+console.log("som v my_setlevel f");
     setLevel(leveliD);
     switch (level) {
       case "harder":
@@ -122,9 +122,9 @@ console.log("som v my_set f");
           <div id="start">START</div>
         </div>
         <div id="levelBtns" ref={levelBtns} /*style={{ lvlBtnsStyle }}*/>
-          <LevelBtn onClick={() => my_setLevel("normal")} text="NORMAL" id="normal" />
-          <LevelBtn onClick={() => my_setLevel("harder")} text="HARDER" id="harder"/>
-          <LevelBtn onClick={() => my_setLevel("hardest")} text="HARDEST" id="hardest" />
+          <LevelBtn  my_setLevel={my_setLevel} text="NORMAL" id="normal" />
+          <LevelBtn  my_setLevel={my_setLevel} text="HARDER" id="harder"/>
+          <LevelBtn  my_setLevel={my_setLevel} text="HARDEST" id="hardest" />
         </div>
       </div>
 
