@@ -1,61 +1,29 @@
-//import logo from './logo.svg';
-//import { useState, useRef } from "react";
+
 import { useState } from "react";
 
-import { DivPictures } from "./components/DivPictures";
+//import { DivPictures } from "./components/DivPictures";
 import { LevelBtn } from "./components/LevelBtn";
-//import { TimeAndStart } from './components/TimeAndStart';
+import { TimeAndStart } from './components/TimeAndStart';
 import "./App.css";
 
 function App() {
-  //const start =document.getElementById("start"); /*--------I don´t understand why is this not needed ?!?!*/
-
-  //const levelBtns=this.refs.levelBtns;
-  // const levelBtns=useRef();
-  // const secondsEl=useRef();
-  //const headingText = useRef();
-
+ 
+  
   const [level, setLevel] = useState("");
   const [h1Style, setH1style] = useState("");
   const [h1Context, setH1context] = useState(
     "Vstúpili ste do hry Pexeso, najskôr nastavte obtiažnosť"
   );
-  const [lvlBtnsStyle, setLevelBtnsStyle] = useState("");
-  const [timeAndStartStyle, setTimeAndStartStyle] = useState("");
-  const [secondsStyle, setSecondsStylle] = useState("");
+  // const [lvlBtnsStyle, setLevelBtnsStyle] = useState("");
+  // const [timeAndStartStyle, setTimeAndStartStyle] = useState("");
+  // const [secondsStyle, setSecondsStylle] = useState("");
 
   const secondsEl = document.getElementById("seconds");
 
-  // const start =document.getElementById("start");
 
   const levelBtns = document.getElementById("levelBtns");
 
-  //if(levelBtns){const levelsHTMLColl = levelBtns.children;
 
-  //const imgsColl = document.getElementsByClassName("div_on_click");
-  //------START BUTTON L.
-  // start.addEventListener("click",TimeAndStart.timer());
-
-  //for (let i = 0; i < levelsHTMLColl.length; i++) {
-
-  //------LEVEL BUTTONS L.
-  //  levelsHTMLColl[i].addEventListener("click", function(){ setLevel(this.id); });
-  //      levelsHTMLColl[i].addEventListener("click", function(){ setLevel("this.id"); });
-
-  //}
-  //}
-
-  // for (let i = 0; i < imgsColl.length; i++) {
-
-  //     //------IMG PEXESO CONTROL L.
-  //     imgsColl[i].addEventListener("click", function(){ mainFn(this); });
-
-  //     //------AFTER ANIMATION DELETE L.
-  //     imgsColl[i].addEventListener("animationend", function(){ _deleteImg(this); });
-  //     //------AFTER ANIMATION SHUFFLE L.
-  //     imgsColl[i].addEventListener("animationend", shuffle);
-
-  // }
   function _setLevelChanges(colorText, colorBG) {
     /*--------------------------------- partial function for set level of the game*/
     // set H1
@@ -74,8 +42,8 @@ function App() {
     //setLevelBtnsStyle("display:none");
     document.getElementById("timeAndStart").style.display="flex";
     //setTimeAndStartStyle("display:flex");
-    // secondsEl.style.color=colorText;
-    setSecondsStylle("color", colorText);
+    secondsEl.style.color=colorText;
+    //setSecondsStylle("color", colorText);
   }
 
   function setHarder() {
@@ -113,16 +81,14 @@ function App() {
   return (
     <div className="App">
       <div>
-        {/* <TimeAndStart /> */}
-        <div id="timeAndStart" >
-          {/* <div id="seconds" ref={secondsEl} style={{ secondsStyle }}> */}
-          <div id="seconds" ref={secondsEl} style={{ secondsStyle }}>
+         <TimeAndStart level={level}/> 
+        {/* <div id="timeAndStart" >
+          <div id="seconds" >
 
             0 s
           </div>
-          {/* <div onClick={timer} id="start" >START</div> */}
           <div id="start">START</div>
-        </div>
+        </div> */}
         <div id="levelBtns" ref={levelBtns} /*style={{ lvlBtnsStyle }}*/>
           <LevelBtn  my_setLevel={my_setLevel} text="NORMAL" id="normal" />
           <LevelBtn  my_setLevel={my_setLevel} text="HARDER" id="harder"/>
@@ -130,7 +96,6 @@ function App() {
         </div>
       </div>
 
-      {/* <h1 style={{ h1Style }} ref={headingText}> */}
       <h1 style={{ h1Style }} >
         {h1Context}
       </h1>
