@@ -1,7 +1,9 @@
 import { DivPicture } from './DivPicture.js';
+import { useState } from "react";
 
+export const DivPictures = ({level, shuffle}) => {
 
-export const DivPictures = () => {
+  const [stticSource, setStticSource] = useState("");
 
 
 
@@ -10,7 +12,9 @@ export const DivPictures = () => {
 
      const divItems = fullArr.map((pictureName,index) =>
 
-        <DivPicture key={index} pictureName={pictureName}/>
+        <DivPicture key={index} 
+                    pictureName={pictureName} 
+                    stticSource={stticSource} level={level} shuffle={shuffle} setStticSource={setStticSource} />
 
      );
 

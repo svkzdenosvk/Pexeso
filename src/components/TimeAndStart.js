@@ -10,7 +10,6 @@ export const TimeAndStart = ({level}) => {
   
 
  function _incrementSeconds(){/*---------------------------------------------------partial f. for change seconds number by increment */
-   console.log(seconds);
    setSeconds(seconds=seconds+1);
    secondsEl.innerHTML  = seconds + " s";
 }
