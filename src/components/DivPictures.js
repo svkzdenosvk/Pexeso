@@ -1,12 +1,12 @@
 import { DivPicture } from './DivPicture.js';
 import { useState } from "react";
 
-export const DivPictures = ({level, shuffle}) => {
+export const DivPictures = ({level, shuffle,intervalSecond,seconds}) => {
 
-  const [stticSource, setStticSource] = useState("");
+     const [stticSource, setStticSource] = useState("");
 
 
-
+    //array of pictures names
      const arr= ["blesk", "drop", "sea", "space", "sun", "vibration", "wind", "wood"];
      const fullArr= [...arr, ...arr];
 
@@ -14,7 +14,12 @@ export const DivPictures = ({level, shuffle}) => {
 
         <DivPicture key={index} 
                     pictureName={pictureName} 
-                    stticSource={stticSource} level={level} shuffle={shuffle} setStticSource={setStticSource} />
+                    stticSource={stticSource} 
+                    level={level} 
+                    shuffle={shuffle} 
+                    setStticSource={setStticSource}
+                    seconds={seconds}
+                    intervalSecond={intervalSecond} />
 
      );
 

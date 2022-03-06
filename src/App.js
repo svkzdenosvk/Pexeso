@@ -9,30 +9,26 @@ import "./App.css";
 function App() {
  
 
-  const [level, setLevel] = useState("");
-  const [color, setH1style] = useState("");
+  const [level, setLevel] = useState();
+  const [color, setColor] = useState("");
+  const [display, setDisplay] = useState("");
   const [h1Context, setH1context] = useState(
     "Vstúpili ste do hry Pexeso, najskôr nastavte obtiažnosť"
   );
 
-  //const [levelBtnsStyle, setLevelBtnsStyle] = useState("");
-
- 
-
-  const secondsEl = document.getElementById("seconds");
-
-
-  const levelBtns = document.getElementById("levelBtns");
+  let [seconds, setSeconds] = useState(0);
+  let [intervalSecond, setIntervalSecond] = useState(0);
 
 
   function _setLevelChanges(colorText, colorBG) {
     /*--------------------------------- partial function for set level of the game*/
-    // set H1
-    //let headingText = this.refs.h1;
     
-    setH1style(colorText);
+    //style -> color of H1 and seconds
+    setColor(colorText);
     //headingText.style.color=colorText;
     //  headingText.current.style({color:colorText});
+
+    // set H1
     setH1context("Pexeso");
     // headingText.textContent="Pexeso";
 
@@ -40,13 +36,13 @@ function App() {
     //setLevelBtnsStyle("backgroundColor",colorBG);
     document.getElementsByTagName("BODY")[0].style.backgroundColor = colorBG;
 
-    // set disappear settings buttons and show timer and starter of game
-    levelBtns.style.display="none";
-    //setLevelBtnsStyle("display:none");
+   // set disappear settings buttons and show timer and starter of game
+   // levelBtns.style.display="none";
+   setDisplay("none");
+
     document.getElementById("timeAndStart").style.display="flex";
     //setTimeAndStartStyle("display:flex");
-    secondsEl.style.color=colorText;
-    //setSecondsStylle("color", colorText);
+   
   }
 
   function setHarder() {
@@ -63,22 +59,31 @@ function App() {
     _setLevelChanges("black");
   }
 
-  function my_setLevel(leveliD ) {
+ 
+  function my_setLevel(e,leveliD ) {
+
+
     /*-----------------------------------------------------main f. for set level*/
-    setLevel(leveliD);
-    switch (level) {
-      case "harder":
-        setHarder();
-        break;
-      case "hardest":
-        setHardest();
-        break;
-      case "normal": 
-        setNormal();
-        break;
-       default:
-         break;
-    }
+     setLevel(leveliD)
+  
+    
+      switch (e.target.id) {
+      
+        case "harder":
+          setHarder();
+          break;
+        case "hardest":
+          setHardest();
+          break;
+        case "normal":        
+          setNormal();
+          break;
+          default:
+            break;
+            
+         
+      }
+   
   }
 
   function _shuffleArray(array) {/*-------------------------------------------------partial f. to shuffle random positions in array stolen from : https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array  (EDIT: Updating to ES6 / ECMAScript 2015) */
@@ -113,22 +118,26 @@ function App() {
   return (
     <div className="App" >
       <div>
-         <TimeAndStart level={level}/> 
+         <TimeAndStart level={level} 
+                       shuffle={shuffle} 
+                       seconds={seconds} 
+                       setSeconds={setSeconds} 
+                       setIntervalSecond={setIntervalSecond}
+                       color={color}/> 
       
-        <div id="levelBtns"  /*style={{ lvlBtnsStyle }}*/>
+        <div id="levelBtns" style={{display}} >
           <LevelBtn  my_setLevel={my_setLevel} text="NORMAL" id="normal" />
           <LevelBtn  my_setLevel={my_setLevel} text="HARDER" id="harder"/>
           <LevelBtn  my_setLevel={my_setLevel} text="HARDEST" id="hardest" />
         </div>
       </div>
 
-       <h1 style={{color}} > 
-      
+       <h1 style={{color}} >  
         {h1Context}
       </h1>
 
       <div className="column_content" id="content">
-        <DivPictures level={level} shuffle={shuffle}/> 
+        <DivPictures level={level} shuffle={shuffle} seconds={seconds} intervalSecond={intervalSecond}/> 
       </div>
     </div>
   );
