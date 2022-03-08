@@ -4,10 +4,12 @@ import { useState } from "react";
 import { DivPictures } from "./components/DivPictures";
 import { LevelBtn } from "./components/LevelBtn";
 import { TimeAndStart } from './components/TimeAndStart';
-import "./App.css";
 
 function App() {
- 
+  
+ // ---------------------------
+ // ---------------------------useStates
+ // ---------------------------
 
   const [level, setLevel] = useState();
   const [color, setColor] = useState("");
@@ -19,72 +21,50 @@ function App() {
   let [seconds, setSeconds] = useState(0);
   let [intervalSecond, setIntervalSecond] = useState(0);
 
+ // ---------------------------
+ // ---------------------------set level fn´s
+ // ---------------------------
 
-  function _setLevelChanges(colorText, colorBG) {
-    /*--------------------------------- partial function for set level of the game*/
+  function _setLevelChanges(colorText, colorBG) { /*--------------------------------- partial function for set level of the game*/
     
     //style -> color of H1 and seconds
     setColor(colorText);
-    //headingText.style.color=colorText;
-    //  headingText.current.style({color:colorText});
-
+  
     // set H1
     setH1context("Pexeso");
-    // headingText.textContent="Pexeso";
 
     // set background of page
-    //setLevelBtnsStyle("backgroundColor",colorBG);
     document.getElementsByTagName("BODY")[0].style.backgroundColor = colorBG;
 
-   // set disappear settings buttons and show timer and starter of game
-   // levelBtns.style.display="none";
-   setDisplay("none");
+    // set disappear settings buttons and show timer and starter of game
+    setDisplay("none");
 
-    document.getElementById("timeAndStart").style.display="flex";
-    //setTimeAndStartStyle("display:flex");
-   
+    document.getElementById("timeAndStart").style.display="flex";   
   }
-
-  function setHarder() {
-    /*----------------------------------------------------------function for set the harder version of game*/
-    _setLevelChanges("white", "#4d141d");
-  }
-
-  function setHardest() {
-    /*---------------------------------------------------------function for set the hardest version of game*/
-    _setLevelChanges("white", "black");
-  }
-
-  function setNormal() {
-    _setLevelChanges("black");
-  }
-
  
-  function my_setLevel(e,leveliD ) {
-
-
-    /*-----------------------------------------------------main f. for set level*/
-     setLevel(leveliD)
-  
+  function my_setLevel(e,leveliD ) {/*-----------------------------------------------------main f. for set level*/
     
+    setLevel(leveliD)
+  
       switch (e.target.id) {
       
         case "harder":
-          setHarder();
+          _setLevelChanges("white", "#4d141d");
           break;
         case "hardest":
-          setHardest();
+          _setLevelChanges("white", "black");
           break;
         case "normal":        
-          setNormal();
+          _setLevelChanges("black");
           break;
-          default:
-            break;
-            
-         
+        default:
+          break;      
       }
-   
   }
+
+ // ---------------------------
+ // ---------------------------shuffle fn´s
+ // ---------------------------
 
   function _shuffleArray(array) {/*-------------------------------------------------partial f. to shuffle random positions in array stolen from : https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array  (EDIT: Updating to ES6 / ECMAScript 2015) */
     for (let i = array.length - 1; i > 0; i--) {
@@ -93,12 +73,12 @@ function App() {
     }
   }    
 
-  function shuffle(){/*---------------------------------------------------------------------function for shuffling (ONLY) in harder and the hardest version of game*/
+  function shuffle(){/*-------------------------------------------------------------function for shuffling (ONLY) in harder and the hardest version of game*/
 
     if(level!=="normal"){
  
        //get HTMLcollection
-       let x= document.getElementsByClassName("div_on_click");/*------------------collection of divs above image*/
+       let x= document.getElementsByClassName("div_on_click");/*--------------------collection of divs above image*/
 
        //convert collection to array
        let arr = Array.from(x);

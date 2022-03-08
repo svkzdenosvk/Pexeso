@@ -3,13 +3,15 @@ import { useState } from "react";
 
 export const DivPictures = ({level, shuffle,intervalSecond,seconds}) => {
 
-     const [stticSource, setStticSource] = useState("");
+  //component about array of pictures
 
+     const [stticSource, setStticSource] = useState("");
 
     //array of pictures names
      const arr= ["blesk", "drop", "sea", "space", "sun", "vibration", "wind", "wood"];
      const fullArr= [...arr, ...arr];
 
+     //array of components -> div>img
      const divItems = fullArr.map((pictureName,index) =>
 
         <DivPicture key={index} 
@@ -20,9 +22,7 @@ export const DivPictures = ({level, shuffle,intervalSecond,seconds}) => {
                     setStticSource={setStticSource}
                     seconds={seconds}
                     intervalSecond={intervalSecond} />
-
      );
-
 
   return (
     <div className="row" id="row">
